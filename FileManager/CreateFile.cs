@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -7,42 +8,43 @@ namespace FileManager
 {
     public partial class CreateFile : Form
     {
-        private Singleton singleton = Program.singleton;
-        public CreateFile()
+        private string localpath;
+
+        public CreateFile(Point point, string localpath)
         {
             InitializeComponent();
+            this.Location = point;
+            this.localpath = localpath;
         }
 
         private void create_Click(object sender, EventArgs e)
         {
             string filename = name.Text;
             string fileextension = extension.Text;
-            lock (singleton)
+            if (fileextension.Equals(""))
             {
-                if (fileextension.Equals(""))
+                
+                try
                 {
-                    try
-                    {
-                        Directory.CreateDirectory(singleton.localpath + "\\" + filename);
-                    }
-                    catch(Exception exception)
-                    {
-                        MessageBox.Show(exception.Message);
-                    }
+                    Directory.CreateDirectory(localpath + "\\" + filename);
                 }
-                else
+                catch (Exception exception)
                 {
-                    
-                    try
-                    {
-                        File.Create(singleton.localpath + "\\" + filename + "." + fileextension);
-                    }
-                    catch(Exception exception)
-                    {
-                        MessageBox.Show(exception.Message);
-                    }
+                    MessageBox.Show(exception.Message);
                 }
             }
+            else
+            {
+                try
+                {
+                    File.Create(localpath + "\\" + filename + "." + fileextension).Close();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+
             Close();
         }
     }

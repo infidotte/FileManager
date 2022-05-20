@@ -1,4 +1,6 @@
-﻿namespace FileManager
+﻿using System.IO;
+
+namespace FileManager
 {
     public class Singleton
     {
@@ -7,6 +9,8 @@
         public string[] discs;
         public string localpath;
         private string trashpath = "C:\\FileManager\\Корзина";
+        public bool iscopy;
+        public DirectoryInfo copyinfo;
 
         private Singleton()
         {

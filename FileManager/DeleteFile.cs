@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,38 +8,36 @@ namespace FileManager
     
     public partial class DeleteFile : Form
     {
-        private Singleton singleton = Program.singleton;
-        public DeleteFile()
+        private string localpath;
+        private string trashpath;
+        public DeleteFile(Point point, string localpath, string trashpath)
         {
             InitializeComponent();
+            this.Location = point;
+            this.localpath = localpath;
+            this.trashpath = trashpath;
         }
 
         private void fulldelete_Click(object sender, EventArgs e)
         {
-            DirectoryInfo info = new DirectoryInfo(singleton.localpath);
-            if ((info.Attributes & FileAttributes.Directory) == 0)
+            DirectoryInfo info = new DirectoryInfo(localpath);
+            if ((info.Attributes & FileAttributes.Directory) != 0)
             {
-                
-                File.Delete(singleton.localpath);
+                info.Delete(true);
             }
             else
             {
-                Directory.Delete(singleton.localpath, true);
+                File.Delete(localpath);
             }
+            
+            Close();
         }
 
         private void totrash_Click(object sender, EventArgs e)
         {
-            DirectoryInfo info = new DirectoryInfo(singleton.localpath);
-            if ((info.Attributes & FileAttributes.Directory) == 0)
-            {
-                
-                File.Move(singleton.localpath, singleton.gettrashpath());
-            }
-            else
-            {
-                Directory.Move(singleton.localpath, singleton.gettrashpath());
-            }
+            DirectoryInfo info = new DirectoryInfo(localpath);
+            info.MoveTo(trashpath+"\\"+info.Name);
+            Close();
         }
         
     }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace FileManager
 {
@@ -40,16 +41,18 @@ namespace FileManager
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(12, 35);
+            this.name.Location = new System.Drawing.Point(9, 28);
+            this.name.Margin = new System.Windows.Forms.Padding(2);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(152, 22);
+            this.name.Size = new System.Drawing.Size(115, 20);
             this.name.TabIndex = 0;
             // 
             // create
             // 
-            this.create.Location = new System.Drawing.Point(102, 63);
+            this.create.Location = new System.Drawing.Point(76, 51);
+            this.create.Margin = new System.Windows.Forms.Padding(2);
             this.create.Name = "create";
-            this.create.Size = new System.Drawing.Size(75, 23);
+            this.create.Size = new System.Drawing.Size(56, 19);
             this.create.TabIndex = 1;
             this.create.Text = "Create";
             this.create.UseVisualStyleBackColor = true;
@@ -57,38 +60,44 @@ namespace FileManager
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "Имя:";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(170, 9);
+            this.label2.Location = new System.Drawing.Point(128, 7);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.Size = new System.Drawing.Size(75, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Расширение:";
             // 
             // extension
             // 
-            this.extension.Location = new System.Drawing.Point(170, 35);
+            this.extension.Location = new System.Drawing.Point(128, 28);
+            this.extension.Margin = new System.Windows.Forms.Padding(2);
             this.extension.Name = "extension";
-            this.extension.Size = new System.Drawing.Size(100, 22);
+            this.extension.Size = new System.Drawing.Size(76, 20);
             this.extension.TabIndex = 4;
             // 
             // CreateFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 97);
+            this.ClientSize = new System.Drawing.Size(212, 79);
             this.Controls.Add(this.extension);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.create);
             this.Controls.Add(this.name);
+            this.Location = Control.MousePosition;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateFile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Create file";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -98,7 +107,6 @@ namespace FileManager
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
 
         private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Button create;

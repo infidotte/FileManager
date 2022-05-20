@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace FileManager
 {
@@ -38,17 +39,19 @@ namespace FileManager
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Как удалить?\r\n";
             // 
             // fulldelete
             // 
-            this.fulldelete.Location = new System.Drawing.Point(12, 35);
+            this.fulldelete.Location = new System.Drawing.Point(9, 28);
+            this.fulldelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fulldelete.Name = "fulldelete";
-            this.fulldelete.Size = new System.Drawing.Size(110, 30);
+            this.fulldelete.Size = new System.Drawing.Size(82, 24);
             this.fulldelete.TabIndex = 1;
             this.fulldelete.Text = "Безвозвратно";
             this.fulldelete.UseVisualStyleBackColor = true;
@@ -56,9 +59,10 @@ namespace FileManager
             // 
             // totrash
             // 
-            this.totrash.Location = new System.Drawing.Point(128, 35);
+            this.totrash.Location = new System.Drawing.Point(96, 28);
+            this.totrash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.totrash.Name = "totrash";
-            this.totrash.Size = new System.Drawing.Size(110, 30);
+            this.totrash.Size = new System.Drawing.Size(82, 24);
             this.totrash.TabIndex = 2;
             this.totrash.Text = "В корзину";
             this.totrash.UseVisualStyleBackColor = true;
@@ -66,15 +70,18 @@ namespace FileManager
             // 
             // DeleteFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 75);
+            this.ClientSize = new System.Drawing.Size(187, 61);
             this.Controls.Add(this.totrash);
             this.Controls.Add(this.fulldelete);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DeleteFile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "DeleteFile";
             this.ResumeLayout(false);
+            this.Location = Control.MousePosition;
         }
 
         private System.Windows.Forms.Button fulldelete;
