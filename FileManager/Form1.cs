@@ -544,38 +544,82 @@ namespace FileManager
 
         private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
-            setLocalPath(item);
-            listView1.DoDragDrop(e.Item, DragDropEffects.Move);
-            label2.Text = singleton.localpath + "dragenter";
+            ListViewItem itemdrag = listView1.FocusedItem;
+            setLocalPath(itemdrag);
+            if (singleton.localpath.Length == 3)
+            {
+                if (new DriveInfo(singleton.localpath).DriveType == DriveType.Fixed)
+                {
+                    MessageBox.Show("No access!");
+                }
+                else
+                {
+                    MessageBox.Show("No access!");
+                }
+            }
+            else if (new DriveInfo(singleton.localpath.Substring(0, 3)).DriveType == DriveType.Fixed &&
+                     singleton.localpath.Contains("System"))
+            {
+                MessageBox.Show("No access!");
+            }
+            else if (itemdrag.Text == "Корзина")
+            {
+                MessageBox.Show("No access!");
+            }
+
+            else if (singleton.localpath.Split('\\').Length == 2 &&
+                     singleton.localpath.Split('\\')[1].Equals("FileManager"))
+            {
+                MessageBox.Show("No access!");
+            }
+            else
+            {
+                singleton.dragitem = singleton.localpath;
+                listView1.DoDragDrop(itemdrag, DragDropEffects.Move);
+            }
         }
 
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
+            ListViewItem item = listView1.SelectedItems[0];
             setLocalPath(item);
-            
-            label3.Text = singleton.localpath + "dragdrop";
+            DirectoryInfo targetinfo = new DirectoryInfo(singleton.localpath);
+            DirectoryInfo dragedinfo = new DirectoryInfo(singleton.dragitem);
+            if ((targetinfo.Attributes & FileAttributes.Directory) != 0)
+            {
+                if ((dragedinfo.Attributes & FileAttributes.Directory) != 0)
+                {
+                    try
+                    {
+                        Directory.Move(dragedinfo.FullName, Path.Combine(targetinfo.FullName, dragedinfo.Name));
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        File.Move(dragedinfo.FullName, Path.Combine(targetinfo.FullName, dragedinfo.Name));
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+                }
+            }
+
+            listView1.Clear();
+            getFilesAndDirs(new DirectoryInfo(singleton.path));
         }
 
         private void listView1_DragOver(object sender, DragEventArgs e)
         {
-            Point targetPoint = 
-                listView1.PointToClient(new Point(e.X, e.Y));
-            int targetIndex = listView1.InsertionMark.NearestIndex(targetPoint);
-            if (targetIndex > -1) 
-            {
-                Rectangle itemBounds = listView1.GetItemRect(targetIndex);
-                if ( targetPoint.X > itemBounds.Left + (itemBounds.Width / 2) )
-                {
-                    listView1.InsertionMark.AppearsAfterItem = true;
-                }
-                else
-                {
-                    listView1.InsertionMark.AppearsAfterItem = false;
-                }
-            }
-            listView1.InsertionMark.Index = targetIndex;
+            e.Effect = DragDropEffects.Move;
+            ListViewItem dragover = listView1.HitTest(listView1.PointToClient(new Point(e.X, e.Y))).Item;
+            dragover.Selected = true;
         }
     }
 }

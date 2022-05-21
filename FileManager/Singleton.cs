@@ -11,6 +11,7 @@ namespace FileManager
         private string trashpath = "C:\\FileManager\\Корзина";
         public bool iscopy;
         public DirectoryInfo copyinfo;
+        public string dragitem;
 
         private Singleton()
         {

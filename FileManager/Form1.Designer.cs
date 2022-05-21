@@ -94,6 +94,7 @@ namespace FileManager
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(9, 50);
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(294, 323);
             this.listView1.SmallImageList = this.imageList1;
@@ -102,10 +103,10 @@ namespace FileManager
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
-            this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(listView1_ItemDrag);
-            this.listView1.DragDrop += new DragEventHandler(this.listView1_DragDrop);
-            this.listView1.DragOver += new DragEventHandler(this.listView1_DragOver);
+            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
+            this.listView1.DragOver += new System.Windows.Forms.DragEventHandler(this.listView1_DragOver);
             this.listView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseUp);
+            this.listView1.ItemDrag += new ItemDragEventHandler(listView1_ItemDrag);
             // 
             // imageList1
             // 
