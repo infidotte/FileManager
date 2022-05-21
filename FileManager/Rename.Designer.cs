@@ -41,12 +41,12 @@ namespace FileManager
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 32);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(105, 20);
+            this.textBox1.Size = new System.Drawing.Size(159, 20);
             this.textBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(28, 58);
+            this.button1.Location = new System.Drawing.Point(54, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -66,16 +66,16 @@ namespace FileManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(130, 93);
+            this.ClientSize = new System.Drawing.Size(183, 93);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.Location = new System.Drawing.Point(108, 367);
             this.Name = "Rename";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Rename";
+            this.Text = "Переименовать";
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Location = Control.MousePosition;
         }
 
         private System.Windows.Forms.Label label1;

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileManager
+namespace Loging
 {
     static class Program
     {
-        //создание объекта Singleton
-        public static Singleton singleton = Singleton.getInstance();
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
         [STAThread]
         static void Main()
         {

@@ -1,0 +1,11 @@
+C:\FileManager\System\FileManager\Loging\bin\Debug\Loging.exe.config
+C:\FileManager\System\FileManager\Loging\bin\Debug\Loging.exe
+C:\FileManager\System\FileManager\Loging\bin\Debug\Loging.pdb
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.csproj.AssemblyReference.cache
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.csproj.SuggestedBindingRedirects.cache
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.Properties.Resources.resources
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.csproj.GenerateResource.cache
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.csproj.CoreCompileInputs.cache
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.exe
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.pdb
+C:\FileManager\System\FileManager\Loging\obj\Debug\Loging.Form1.resources

@@ -32,6 +32,7 @@ namespace FileManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateFile));
             this.name = new System.Windows.Forms.TextBox();
             this.create = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -94,11 +95,12 @@ namespace FileManager
             this.Controls.Add(this.label1);
             this.Controls.Add(this.create);
             this.Controls.Add(this.name);
-            this.Location = Control.MousePosition;
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(580, 267);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateFile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Create file";
+            this.Text = "Создание";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

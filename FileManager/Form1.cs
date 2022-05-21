@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Management;
-using System.Runtime.CompilerServices;
-using System.Threading;
 
 namespace FileManager
 {
@@ -23,23 +16,15 @@ namespace FileManager
         {
             InitializeComponent();
             getStartDirectory();
-            Thread tr = new Thread(thread);
+
+            EventWatcherPolling thrd = new EventWatcherPolling();
         }
 
-
-        private void thread()
-        {
-            while (true)
-            {
-                label1.Text = singleton.path;
-                label2.Text = singleton.localpath;
-                Thread.Sleep(2000);
-            }
-        }
-
+        #region Directory and Path methods
+        //Выводит стартовую директорию
         private void getStartDirectory()
         {
-            textBox1.Text = "";
+            PathText.Text = "";
 
             singleton.path = "";
             singleton.discs = Environment.GetLogicalDrives();
@@ -56,7 +41,23 @@ namespace FileManager
                 }
             }
         }
+        //Устанавливает локальную путь (Путь выбранного элемента)
+        private void setLocalPath(ListViewItem focusedItem)
+        {
+            if (singleton.discs.Contains(focusedItem.Text) || singleton.discs.Contains(singleton.path))
+            {
+                singleton.localpath = singleton.path + focusedItem.Text;
+            }
+            else
+            {
+                singleton.localpath = Path.Combine(singleton.path, focusedItem.Text);
+            }
+        }
+        #endregion
 
+        #region ListView Methods
+
+        //Происходит при активации элемента ListView(Double-Click)
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
             ListViewItem item = listView1.SelectedItems[0];
@@ -67,9 +68,8 @@ namespace FileManager
             }
             else
             {
-                singleton.path += "\\" + item.Text;
+                singleton.path = Path.Combine(singleton.path, item.Text);
             }
-
 
             try
             {
@@ -77,13 +77,13 @@ namespace FileManager
                 if ((info.Attributes & FileAttributes.Directory) == 0)
                 {
                     string way = singleton.path;
-                    textBox1.Text = singleton.path = Directory.GetParent(singleton.path).FullName;
+                    PathText.Text = singleton.path = Directory.GetParent(singleton.path).FullName;
                     Process.Start(way);
                 }
                 else
                 {
                     listView1.Clear();
-                    textBox1.Text = singleton.path;
+                    PathText.Text = singleton.path;
                     getFilesAndDirs(info);
                 }
             }
@@ -92,11 +92,138 @@ namespace FileManager
                 MessageBox.Show(exception.Message);
             }
         }
+        
+        private void listView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (listView1.SelectedItems.Count != 0 && listView1.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    ListViewItem focus = listView1.FocusedItem;
+                    setLocalPath(focus);
 
-        private void button1_Click(object sender, EventArgs e)
+                    if (singleton.localpath.Length == 3)
+                    {
+                        if (new DriveInfo(singleton.localpath).DriveType == DriveType.Fixed)
+                        {
+                            ContextMenu1_deletebutton.Visible = false;
+                            ContextMenu1_createbutton.Visible = false;
+                            ContextMenu1_copybutton.Visible = false;
+                            ContextMenu1_cutbutton.Visible = false;
+                            ContextMenu1_renamebutton.Visible = false;
+                            ContextMenu1_pastebutton.Visible = false;
+                        }
+                        else
+                        {
+                            ContextMenu1_deletebutton.Visible = false;
+                            ContextMenu1_createbutton.Visible = true;
+                            ContextMenu1_copybutton.Visible = false;
+                            ContextMenu1_cutbutton.Visible = false;
+                            ContextMenu1_renamebutton.Visible = false;
+                            ContextMenu1_pastebutton.Visible = true;
+                        }
+                    }
+                    else if (new DriveInfo(singleton.localpath.Substring(0, 3)).DriveType == DriveType.Fixed &&
+                             singleton.localpath.Contains("System"))
+                    {
+                        ContextMenu1_deletebutton.Visible = false;
+                        ContextMenu1_createbutton.Visible = false;
+                        ContextMenu1_copybutton.Visible = false;
+                        ContextMenu1_cutbutton.Visible = false;
+                        ContextMenu1_renamebutton.Visible = false;
+                        ContextMenu1_pastebutton.Visible = false;
+                    }
+                    else if (focus.Text == "Корзина")
+                    {
+                        ContextMenu1_deletebutton.Visible = false;
+                        ContextMenu1_createbutton.Visible = true;
+                        ContextMenu1_copybutton.Visible = false;
+                        ContextMenu1_cutbutton.Visible = false;
+                        ContextMenu1_renamebutton.Visible = false;
+                        ContextMenu1_pastebutton.Visible = true;
+                    }
+
+                    else if (singleton.localpath.Split('\\').Length == 2 &&
+                             singleton.localpath.Split('\\')[1].Equals("FileManager"))
+                    {
+                        ContextMenu1_deletebutton.Visible = false;
+                        ContextMenu1_createbutton.Visible = false;
+                        ContextMenu1_copybutton.Visible = false;
+                        ContextMenu1_cutbutton.Visible = false;
+                        ContextMenu1_renamebutton.Visible = false;
+                        ContextMenu1_pastebutton.Visible = true;
+                    }
+                    else if ((new DirectoryInfo(singleton.localpath).Attributes & FileAttributes.Directory) == 0)
+                    {
+                        ContextMenu1_deletebutton.Visible = true;
+                        ContextMenu1_createbutton.Visible = false;
+                        ContextMenu1_copybutton.Visible = true;
+                        ContextMenu1_cutbutton.Visible = true;
+                        ContextMenu1_renamebutton.Visible = true;
+                        ContextMenu1_pastebutton.Visible = false;
+                    }
+                    else
+                    {
+                        ContextMenu1_deletebutton.Visible = true;
+                        ContextMenu1_createbutton.Visible = true;
+                        ContextMenu1_copybutton.Visible = true;
+                        ContextMenu1_cutbutton.Visible = true;
+                        ContextMenu1_renamebutton.Visible = true;
+                        ContextMenu1_pastebutton.Visible = true;
+                    }
+
+                    ContextMenu1.Show(Cursor.Position);
+                }
+                else
+                {
+                    if (singleton.path.Equals(""))
+                    {
+                        ContextMenu2_createbutton.Visible = false;
+                        ContextMenu2_pastebutton.Visible = false;
+                    }
+                    else if (singleton.path.Length == 3)
+                    {
+                        if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed)
+                        {
+                            ContextMenu2_createbutton.Visible = false;
+                            ContextMenu2_pastebutton.Visible = false;
+                        }
+                        else
+                        {
+                            ContextMenu2_createbutton.Visible = true;
+                            ContextMenu2_pastebutton.Visible = true;
+                        }
+                    }
+                    else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType != DriveType.Fixed)
+                    {
+                        ContextMenu2_createbutton.Visible = true;
+                        ContextMenu2_pastebutton.Visible = true;
+                    }
+                    else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed &&
+                             singleton.path.Contains("System"))
+                    {
+                        ContextMenu2_createbutton.Visible = false;
+                        ContextMenu2_pastebutton.Visible = false;
+                    }
+                    else
+                    {
+                        ContextMenu2_createbutton.Visible = true;
+                        ContextMenu2_pastebutton.Visible = true;
+                    }
+
+                    ContextMenu2.Show(Cursor.Position);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Back and Go buttons ( "<" & ">" )
+
+        //Происходит при нажатии кнопки Назад ("<")
+        private void OnBackButtonClick(object sender, EventArgs e)
         {
             listView1.Clear();
-
             if (singleton.discs.Contains(singleton.path))
             {
                 getStartDirectory();
@@ -112,136 +239,32 @@ namespace FileManager
             else
             {
                 DirectoryInfo info = Directory.GetParent(singleton.path);
-                textBox1.Text = singleton.path = info.FullName;
+                PathText.Text = singleton.path = info.FullName;
                 getFilesAndDirs(info);
             }
         }
 
-        private void listView1_MouseUp(object sender, MouseEventArgs e)
+        //Происходит при нажатии кнопки Вперед(">")
+        private void onGoButtonClick(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            singleton.path = PathText.Text;
+            if (Directory.Exists(singleton.path))
             {
-                label1.Text = singleton.path;
-                label2.Text = singleton.localpath;
-                if (listView1.SelectedItems.Count != 0 && listView1.FocusedItem.Bounds.Contains(e.Location))
-                {
-                    ListViewItem focus = listView1.FocusedItem;
-                    setLocalPath(focus);
-
-                    if (singleton.localpath.Length == 3)
-                    {
-                        if (new DriveInfo(singleton.localpath).DriveType == DriveType.Fixed)
-                        {
-                            deleteToolStripMenuItem.Visible = false;
-                            createToolStripMenuItem.Visible = false;
-                            copyToolStripMenuItem.Visible = false;
-                            cutToolStripMenuItem.Visible = false;
-                            reanameToolStripMenuItem.Visible = false;
-                            pasteToolStripMenuItem.Visible = false;
-                        }
-                        else
-                        {
-                            deleteToolStripMenuItem.Visible = false;
-                            createToolStripMenuItem.Visible = true;
-                            copyToolStripMenuItem.Visible = false;
-                            cutToolStripMenuItem.Visible = false;
-                            reanameToolStripMenuItem.Visible = false;
-                            pasteToolStripMenuItem.Visible = true;
-                        }
-                    }
-                    else if (new DriveInfo(singleton.localpath.Substring(0, 3)).DriveType == DriveType.Fixed &&
-                             singleton.localpath.Contains("System"))
-                    {
-                        deleteToolStripMenuItem.Visible = false;
-                        createToolStripMenuItem.Visible = false;
-                        copyToolStripMenuItem.Visible = false;
-                        cutToolStripMenuItem.Visible = false;
-                        reanameToolStripMenuItem.Visible = false;
-                        pasteToolStripMenuItem.Visible = false;
-                    }
-                    else if (focus.Text == "Корзина")
-                    {
-                        deleteToolStripMenuItem.Visible = false;
-                        createToolStripMenuItem.Visible = true;
-                        copyToolStripMenuItem.Visible = false;
-                        cutToolStripMenuItem.Visible = false;
-                        reanameToolStripMenuItem.Visible = false;
-                        pasteToolStripMenuItem.Visible = true;
-                    }
-
-                    else if (singleton.localpath.Split('\\').Length == 2 &&
-                             singleton.localpath.Split('\\')[1].Equals("FileManager"))
-                    {
-                        deleteToolStripMenuItem.Visible = false;
-                        createToolStripMenuItem.Visible = false;
-                        copyToolStripMenuItem.Visible = false;
-                        cutToolStripMenuItem.Visible = false;
-                        reanameToolStripMenuItem.Visible = false;
-                        pasteToolStripMenuItem.Visible = true;
-                    }
-                    else if ((new DirectoryInfo(singleton.localpath).Attributes & FileAttributes.Directory) == 0)
-                    {
-                        deleteToolStripMenuItem.Visible = true;
-                        createToolStripMenuItem.Visible = false;
-                        copyToolStripMenuItem.Visible = true;
-                        cutToolStripMenuItem.Visible = true;
-                        reanameToolStripMenuItem.Visible = true;
-                        pasteToolStripMenuItem.Visible = false;
-                    }
-                    else
-                    {
-                        deleteToolStripMenuItem.Visible = true;
-                        createToolStripMenuItem.Visible = true;
-                        copyToolStripMenuItem.Visible = true;
-                        cutToolStripMenuItem.Visible = true;
-                        reanameToolStripMenuItem.Visible = true;
-                        pasteToolStripMenuItem.Visible = true;
-                    }
-
-                    contextMenuStrip1.Show(Cursor.Position);
-                }
-                else
-                {
-                    if (singleton.path.Equals(""))
-                    {
-                        createtoolStripMenu2Item.Visible = false;
-                        pasteToolStripMenuItem1.Visible = false;
-                    }
-                    else if (singleton.path.Length == 3)
-                    {
-                        if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed)
-                        {
-                            createtoolStripMenu2Item.Visible = false;
-                            pasteToolStripMenuItem1.Visible = false;
-                        }
-                        else
-                        {
-                            createtoolStripMenu2Item.Visible = true;
-                            pasteToolStripMenuItem1.Visible = true;
-                        }
-                    }
-                    else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType != DriveType.Fixed)
-                    {
-                        createtoolStripMenu2Item.Visible = true;
-                        pasteToolStripMenuItem1.Visible = true;
-                    }
-                    else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed &&
-                             singleton.path.Contains("System"))
-                    {
-                        createtoolStripMenu2Item.Visible = false;
-                        pasteToolStripMenuItem1.Visible = false;
-                    }
-                    else
-                    {
-                        createtoolStripMenu2Item.Visible = true;
-                        pasteToolStripMenuItem1.Visible = true;
-                    }
-
-                    contextMenuStrip2.Show(Cursor.Position);
-                }
+                DirectoryInfo info = new DirectoryInfo(singleton.path);
+                listView1.Clear();
+                getFilesAndDirs(info);
+            }
+            else
+            {
+                MessageBox.Show("Wrong way!");
             }
         }
 
+        #endregion
+
+        #region Get files and directorys methods
+
+        //Получает файлы и дериктории 
         private void getFilesAndDirs(DirectoryInfo info)
         {
             if (singleton.discs.Contains(singleton.path) && new DriveInfo(singleton.path).DriveType == DriveType.Fixed)
@@ -279,36 +302,13 @@ namespace FileManager
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            singleton.path = textBox1.Text;
-            if (Directory.Exists(singleton.path))
-            {
-                DirectoryInfo info = new DirectoryInfo(singleton.path);
-                listView1.Clear();
-                getFilesAndDirs(info);
-            }
-            else
-            {
-                MessageBox.Show("Wrong way!");
-            }
-        }
+        #endregion
 
-        private void setLocalPath(ListViewItem focusedItem)
-        {
-            if (singleton.discs.Contains(focusedItem.Text) || singleton.discs.Contains(singleton.path))
-            {
-                singleton.localpath = singleton.path + focusedItem.Text;
-            }
-            else
-            {
-                singleton.localpath = singleton.path + "\\" + focusedItem.Text;
-            }
-        }
+        #region Context Menu Methods
 
-        private void CreateToolStripMenuItemOnClick(object sender, EventArgs e)
+        private void ContextMenu1_CreateButton(object sender, EventArgs e)
         {
-            textBox1.Text = singleton.path;
+            PathText.Text = singleton.path;
             CreateFile cf = new CreateFile(Cursor.Position, singleton.localpath);
             cf.ShowDialog();
             listView1.Clear();
@@ -316,7 +316,7 @@ namespace FileManager
             getFilesAndDirs(info);
         }
 
-        private void DeleteToolStripMenuItemOnClick(object sender, EventArgs e)
+        private void ContextMenu1_DeleteButton(object sender, EventArgs e)
         {
             DeleteFile df = new DeleteFile(Cursor.Position, singleton.localpath, singleton.gettrashpath());
             df.ShowDialog();
@@ -325,9 +325,9 @@ namespace FileManager
             getFilesAndDirs(info);
         }
 
-        private void CreateToolStripMenuItemOnClickEmpty(object sender, EventArgs e)
+        private void ContextMenu2_CreateButton(object sender, EventArgs e)
         {
-            textBox1.Text = singleton.path;
+            PathText.Text = singleton.path;
             CreateFile cf = new CreateFile(Cursor.Position, singleton.path);
             cf.ShowDialog();
             listView1.Clear();
@@ -335,7 +335,7 @@ namespace FileManager
             getFilesAndDirs(info);
         }
 
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ContextMenu1_CopyButton(object sender, EventArgs e)
         {
             ListViewItem item = listView1.FocusedItem;
             setLocalPath(item);
@@ -344,7 +344,7 @@ namespace FileManager
             singleton.iscopy = true;
         }
 
-        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ContextMenu1_CutButton(object sender, EventArgs e)
         {
             ListViewItem item = listView1.FocusedItem;
             setLocalPath(item);
@@ -352,31 +352,43 @@ namespace FileManager
             singleton.iscopy = false;
         }
 
-        private void reanameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ContextMenu1_RenameButton(object sender, EventArgs e)
         {
             ListViewItem item = listView1.FocusedItem;
             setLocalPath(item);
             DirectoryInfo info = new DirectoryInfo(singleton.localpath);
             Rename rename = new Rename(Cursor.Position, info);
-            label3.Text = info.Name;
             rename.ShowDialog();
             listView1.Clear();
             DirectoryInfo info1 = new DirectoryInfo(singleton.path);
             getFilesAndDirs(info1);
+            if (singleton.locker)
+            {
+                PipeLineWriter(info.Name + " переименован в -> " + singleton.rename + " в: " + DateTime.Now +
+                               " по местному времени");
+            }
         }
 
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ContextMenu1_PasteButton(object sender, EventArgs e)
         {
             ListViewItem item = listView1.FocusedItem;
             setLocalPath(item);
             DirectoryInfo info = new DirectoryInfo(singleton.path);
             DirectoryInfo local = new DirectoryInfo(singleton.localpath);
-            paste(local);
+            PasteDirectory(local);
             listView1.Clear();
             getFilesAndDirs(info);
         }
 
-        private void paste(DirectoryInfo local1)
+        private void ContextMenu2_PasteButton(object sender, EventArgs e)
+        {
+            DirectoryInfo info = new DirectoryInfo(singleton.path);
+            PasteDirectory(info);
+            listView1.Clear();
+            getFilesAndDirs(info);
+        }
+
+        private void PasteDirectory(DirectoryInfo local1)
         {
             DirectoryInfo info = singleton.copyinfo;
             DirectoryInfo local = local1;
@@ -439,44 +451,39 @@ namespace FileManager
             }
         }
 
-        private void pasteToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            DirectoryInfo info = new DirectoryInfo(singleton.path);
-            paste(info);
-            listView1.Clear();
-            getFilesAndDirs(info);
-        }
+        #endregion
 
-        #region Utilits
+        #region Main and Utilits
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Main_About(object sender, EventArgs e)
         {
             MessageBox.Show(
                 "Операционные системы и оболочки\nЯзык программирования: C#\nЕвдокимов Денис Вячеславович\nРПИС-03");
         }
 
-        private void windowsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Main_Help(object sender, EventArgs e)
         {
-            Process.Start("cmd");
+            Process.Start("readme.txt");
         }
 
-        private void диспетчерЗадачToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Utilits_TaskManager(object sender, EventArgs e)
         {
             Process.Start("Taskmgr.exe");
         }
 
-        private void панельУправленияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Utilits_ControlPanel(object sender, EventArgs e)
         {
             Process.Start("control");
         }
 
-        private void оСистемеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Utilits_System(object sender, EventArgs e)
         {
             Process.Start("msinfo32");
         }
 
         #endregion
 
+        #region override methods
 
         protected override void WndProc(ref Message m)
         {
@@ -502,13 +509,17 @@ namespace FileManager
             }
         }
 
+        #endregion
+
+        #region HotKeys
+
         private void KeyDownEventHandler(object sender, KeyEventArgs e)
         {
             if (listView1.SelectedItems.Count == 0)
             {
                 if (e.Control && e.KeyCode == Keys.V)
                 {
-                    pasteToolStripMenuItem1_Click(sender, e);
+                    ContextMenu2_PasteButton(sender, e);
                     e.SuppressKeyPress = true; // Stops other controls on the form receiving event.
                 }
             }
@@ -516,31 +527,30 @@ namespace FileManager
             {
                 if (e.Control && e.KeyCode == Keys.C)
                 {
-                    copyToolStripMenuItem_Click(sender, e);
+                    ContextMenu1_CopyButton(sender, e);
                 }
                 else if (e.Control && e.KeyCode == Keys.V)
                 {
-                    pasteToolStripMenuItem_Click(sender, e);
+                    ContextMenu1_PasteButton(sender, e);
                 }
                 else if (e.Control && e.KeyCode == Keys.X)
                 {
-                    cutToolStripMenuItem_Click(sender, e);
+                    ContextMenu1_CutButton(sender, e);
                 }
                 else if (e.KeyCode == Keys.Delete)
                 {
-                    DeleteToolStripMenuItemOnClick(sender, e);
+                    ContextMenu1_DeleteButton(sender, e);
                 }
                 else if (e.Control && e.KeyCode == Keys.R)
                 {
-                    reanameToolStripMenuItem_Click(sender, e);
+                    ContextMenu1_RenameButton(sender, e);
                 }
             }
         }
 
-        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("readme.txt");
-        }
+        #endregion
+
+        #region Drag&Drop
 
         private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
@@ -621,5 +631,60 @@ namespace FileManager
             ListViewItem dragover = listView1.HitTest(listView1.PointToClient(new Point(e.X, e.Y))).Item;
             dragover.Selected = true;
         }
+
+        #endregion
+
+        #region PipeLine
+
+        private void PipeLineWriter(string message)
+        {
+            NamedPipeServerStream pipeLineServer = new NamedPipeServerStream("pipeLine", PipeDirection.Out);
+            pipeLineServer.WaitForConnection();
+            if (pipeLineServer.IsConnected)
+            {
+                try
+                {
+                    using (StreamWriter writer = new StreamWriter(pipeLineServer))
+                    {
+                        writer.WriteLine(message);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+        }
+
+        private void PipeLineClose(object sender, FormClosedEventArgs e)
+        {
+            if (singleton.locker)
+            {
+                PipeLineWriter("Close");
+            }
+        }
+
+        #endregion
+
+        #region Functionality
+
+        private void Functionality_OpenPipeLine(object sender, EventArgs e)
+        {
+            Process.Start("C:\\FileManager\\System\\FileManager\\Loging\\bin\\Debug\\Loging.exe");
+            singleton.locker = true;
+        }
+
+        private void Functionality_ClosePipeLine(object sender, EventArgs e)
+        {
+            PipeLineWriter("Close");
+            singleton.locker = false;
+        }
+
+        private void Functionality_OpenLogFile(object sender, EventArgs e)
+        {
+            Process.Start("logfile.txt");
+        }
+
+        #endregion
     }
 }

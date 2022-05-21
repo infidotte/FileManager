@@ -4,6 +4,7 @@ namespace FileManager
 {
     public class Singleton
     {
+        #region All aplication variables
         private static Singleton instance;
         public string path;
         public string[] discs;
@@ -12,11 +13,10 @@ namespace FileManager
         public bool iscopy;
         public DirectoryInfo copyinfo;
         public string dragitem;
-
-        private Singleton()
-        {
-            
-        }
+        public string rename;
+        public bool locker;
+        #endregion
+        
 
         public string gettrashpath()
         {

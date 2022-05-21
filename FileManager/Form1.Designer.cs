@@ -34,59 +34,56 @@ namespace FileManager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PathText = new System.Windows.Forms.TextBox();
+            this.backbutton = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reanameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.createtoolStripMenu2Item = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.консольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.диспетчерЗадачToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.панельУправленияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оСистемеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.contextMenuStrip1.SuspendLayout();
-            this.contextMenuStrip2.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.ContextMenu1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ContextMenu1_createbutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1_deletebutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1_copybutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1_cutbutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1_renamebutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1_pastebutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.gobutton = new System.Windows.Forms.Button();
+            this.ContextMenu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ContextMenu2_createbutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu2_pastebutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstrip = new System.Windows.Forms.ToolStrip();
+            this.Main = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Main_aboutbutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.Main_helpbutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.Utilites = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Utilites_taskmanager = new System.Windows.Forms.ToolStripMenuItem();
+            this.Utilites_controlpanel = new System.Windows.Forms.ToolStripMenuItem();
+            this.Utilites_systembutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.Functionality = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Functionality_openpipeline = new System.Windows.Forms.ToolStripMenuItem();
+            this.Functionality_closepipeline = new System.Windows.Forms.ToolStripMenuItem();
+            this.Functionality_openlogfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1.SuspendLayout();
+            this.ContextMenu2.SuspendLayout();
+            this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // PathText
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 26);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(294, 20);
-            this.textBox1.TabIndex = 0;
+            this.PathText.Location = new System.Drawing.Point(9, 26);
+            this.PathText.Margin = new System.Windows.Forms.Padding(2);
+            this.PathText.Name = "PathText";
+            this.PathText.Size = new System.Drawing.Size(294, 20);
+            this.PathText.TabIndex = 0;
             // 
-            // button1
+            // backbutton
             // 
-            this.button1.Location = new System.Drawing.Point(307, 26);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(17, 19);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "«";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.backbutton.Location = new System.Drawing.Point(307, 26);
+            this.backbutton.Margin = new System.Windows.Forms.Padding(2);
+            this.backbutton.Name = "backbutton";
+            this.backbutton.Size = new System.Drawing.Size(17, 19);
+            this.backbutton.TabIndex = 1;
+            this.backbutton.Text = "«";
+            this.backbutton.UseVisualStyleBackColor = true;
+            this.backbutton.Click += new System.EventHandler(this.OnBackButtonClick);
             // 
             // listView1
             // 
@@ -96,17 +93,17 @@ namespace FileManager
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(294, 323);
+            this.listView1.Size = new System.Drawing.Size(336, 323);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.StateImageList = this.imageList1;
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView1_ItemDrag);
             this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
             this.listView1.DragOver += new System.Windows.Forms.DragEventHandler(this.listView1_DragOver);
             this.listView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseUp);
-            this.listView1.ItemDrag += new ItemDragEventHandler(listView1_ItemDrag);
             // 
             // imageList1
             // 
@@ -117,281 +114,256 @@ namespace FileManager
             this.imageList1.Images.SetKeyName(2, "file.png");
             this.imageList1.Images.SetKeyName(3, "usb.png");
             // 
-            // label1
+            // ContextMenu1
             // 
-            this.label1.Location = new System.Drawing.Point(492, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 84);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.ContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu1_createbutton, this.ContextMenu1_deletebutton, this.ContextMenu1_copybutton, this.ContextMenu1_cutbutton, this.ContextMenu1_renamebutton, this.ContextMenu1_pastebutton});
+            this.ContextMenu1.Name = "ContextMenu1";
+            this.ContextMenu1.Size = new System.Drawing.Size(165, 136);
             // 
-            // label2
+            // ContextMenu1_createbutton
             // 
-            this.label2.Location = new System.Drawing.Point(492, 109);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 70);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            this.ContextMenu1_createbutton.Name = "ContextMenu1_createbutton";
+            this.ContextMenu1_createbutton.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_createbutton.Text = "Create";
+            this.ContextMenu1_createbutton.Click += new System.EventHandler(this.ContextMenu1_CreateButton);
             // 
-            // label3
+            // ContextMenu1_deletebutton
             // 
-            this.label3.Location = new System.Drawing.Point(492, 179);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 71);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.ContextMenu1_deletebutton.Name = "ContextMenu1_deletebutton";
+            this.ContextMenu1_deletebutton.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.ContextMenu1_deletebutton.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_deletebutton.Text = "Delete";
+            this.ContextMenu1_deletebutton.Click += new System.EventHandler(this.ContextMenu1_DeleteButton);
             // 
-            // contextMenuStrip1
+            // ContextMenu1_copybutton
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.createToolStripMenuItem, this.deleteToolStripMenuItem, this.copyToolStripMenuItem, this.cutToolStripMenuItem, this.reanameToolStripMenuItem, this.pasteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(165, 136);
+            this.ContextMenu1_copybutton.Name = "ContextMenu1_copybutton";
+            this.ContextMenu1_copybutton.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.ContextMenu1_copybutton.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_copybutton.Text = "Copy";
+            this.ContextMenu1_copybutton.Click += new System.EventHandler(this.ContextMenu1_CopyButton);
             // 
-            // createToolStripMenuItem
+            // ContextMenu1_cutbutton
             // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.createToolStripMenuItem.Text = "Create";
-            this.createToolStripMenuItem.Click += new System.EventHandler(this.CreateToolStripMenuItemOnClick);
+            this.ContextMenu1_cutbutton.Name = "ContextMenu1_cutbutton";
+            this.ContextMenu1_cutbutton.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.ContextMenu1_cutbutton.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_cutbutton.Text = "Cut";
+            this.ContextMenu1_cutbutton.Click += new System.EventHandler(this.ContextMenu1_CutButton);
             // 
-            // deleteToolStripMenuItem
+            // ContextMenu1_renamebutton
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItemOnClick);
+            this.ContextMenu1_renamebutton.Name = "ContextMenu1_renamebutton";
+            this.ContextMenu1_renamebutton.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.ContextMenu1_renamebutton.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_renamebutton.Text = "Reaname";
+            this.ContextMenu1_renamebutton.Click += new System.EventHandler(this.ContextMenu1_RenameButton);
             // 
-            // copyToolStripMenuItem
+            // ContextMenu1_pastebutton
             // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            this.ContextMenu1_pastebutton.Name = "ContextMenu1_pastebutton";
+            this.ContextMenu1_pastebutton.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.ContextMenu1_pastebutton.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_pastebutton.Text = "Paste";
+            this.ContextMenu1_pastebutton.Click += new System.EventHandler(this.ContextMenu1_PasteButton);
             // 
-            // cutToolStripMenuItem
+            // gobutton
             // 
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.cutToolStripMenuItem.Text = "Cut";
-            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+            this.gobutton.Location = new System.Drawing.Point(328, 26);
+            this.gobutton.Margin = new System.Windows.Forms.Padding(2);
+            this.gobutton.Name = "gobutton";
+            this.gobutton.Size = new System.Drawing.Size(17, 19);
+            this.gobutton.TabIndex = 6;
+            this.gobutton.Text = "»";
+            this.gobutton.UseVisualStyleBackColor = true;
+            this.gobutton.Click += new System.EventHandler(this.onGoButtonClick);
             // 
-            // reanameToolStripMenuItem
+            // ContextMenu2
             // 
-            this.reanameToolStripMenuItem.Name = "reanameToolStripMenuItem";
-            this.reanameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.reanameToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.reanameToolStripMenuItem.Text = "Reaname";
-            this.reanameToolStripMenuItem.Click += new System.EventHandler(this.reanameToolStripMenuItem_Click);
+            this.ContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu2_createbutton, this.ContextMenu2_pastebutton});
+            this.ContextMenu2.Name = "ContextMenu1";
+            this.ContextMenu2.Size = new System.Drawing.Size(144, 48);
             // 
-            // pasteToolStripMenuItem
+            // ContextMenu2_createbutton
             // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            this.ContextMenu2_createbutton.Name = "ContextMenu2_createbutton";
+            this.ContextMenu2_createbutton.Size = new System.Drawing.Size(143, 22);
+            this.ContextMenu2_createbutton.Text = "Create";
+            this.ContextMenu2_createbutton.Click += new System.EventHandler(this.ContextMenu2_CreateButton);
             // 
-            // button2
+            // ContextMenu2_pastebutton
             // 
-            this.button2.Location = new System.Drawing.Point(328, 26);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(17, 19);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "»";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ContextMenu2_pastebutton.Name = "ContextMenu2_pastebutton";
+            this.ContextMenu2_pastebutton.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.ContextMenu2_pastebutton.Size = new System.Drawing.Size(143, 22);
+            this.ContextMenu2_pastebutton.Text = "Paste";
+            this.ContextMenu2_pastebutton.Click += new System.EventHandler(this.ContextMenu2_PasteButton);
             // 
-            // contextMenuStrip2
+            // toolstrip
             // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.createtoolStripMenu2Item, this.pasteToolStripMenuItem1});
-            this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(144, 48);
+            this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Main, this.Utilites, this.Functionality});
+            this.toolstrip.Location = new System.Drawing.Point(0, 0);
+            this.toolstrip.Name = "toolstrip";
+            this.toolstrip.Size = new System.Drawing.Size(357, 25);
+            this.toolstrip.TabIndex = 7;
+            this.toolstrip.Text = "toolStrip1";
             // 
-            // createtoolStripMenu2Item
+            // Main
             // 
-            this.createtoolStripMenu2Item.Name = "createtoolStripMenu2Item";
-            this.createtoolStripMenu2Item.Size = new System.Drawing.Size(143, 22);
-            this.createtoolStripMenu2Item.Text = "Create";
-            this.createtoolStripMenu2Item.Click += new System.EventHandler(this.CreateToolStripMenuItemOnClickEmpty);
+            this.Main.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Main.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Main_aboutbutton, this.Main_helpbutton});
+            this.Main.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Main.Name = "Main";
+            this.Main.Size = new System.Drawing.Size(65, 22);
+            this.Main.Text = "Главное";
             // 
-            // pasteToolStripMenuItem1
+            // Main_aboutbutton
             // 
-            this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
-            this.pasteToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
-            this.pasteToolStripMenuItem1.Text = "Paste";
-            this.pasteToolStripMenuItem1.Click += new System.EventHandler(this.pasteToolStripMenuItem1_Click);
+            this.Main_aboutbutton.Name = "Main_aboutbutton";
+            this.Main_aboutbutton.Size = new System.Drawing.Size(149, 22);
+            this.Main_aboutbutton.Text = "О программе";
+            this.Main_aboutbutton.Click += new System.EventHandler(this.Main_About);
             // 
-            // toolStripDropDownButton1
+            // Main_helpbutton
             // 
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(23, 23);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            this.Main_helpbutton.Name = "Main_helpbutton";
+            this.Main_helpbutton.Size = new System.Drawing.Size(149, 22);
+            this.Main_helpbutton.Text = "Справка";
+            this.Main_helpbutton.Click += new System.EventHandler(this.Main_Help);
             // 
-            // toolStrip1
+            // Utilites
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toolStripDropDownButton3, this.toolStripDropDownButton4});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(600, 25);
-            this.toolStrip1.TabIndex = 7;
-            this.toolStrip1.Text = "toolStrip1";
+            this.Utilites.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Utilites.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Utilites_taskmanager, this.Utilites_controlpanel, this.Utilites_systembutton});
+            this.Utilites.Image = ((System.Drawing.Image) (resources.GetObject("Utilites.Image")));
+            this.Utilites.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Utilites.Name = "Utilites";
+            this.Utilites.Size = new System.Drawing.Size(67, 22);
+            this.Utilites.Text = "Утилиты";
             // 
-            // toolStripDropDownButton3
+            // Utilites_taskmanager
             // 
-            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.оПрограммеToolStripMenuItem, this.справкаToolStripMenuItem});
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(65, 22);
-            this.toolStripDropDownButton3.Text = "Главное";
+            this.Utilites_taskmanager.Name = "Utilites_taskmanager";
+            this.Utilites_taskmanager.Size = new System.Drawing.Size(183, 22);
+            this.Utilites_taskmanager.Text = "Диспетчер задач";
+            this.Utilites_taskmanager.Click += new System.EventHandler(this.Utilits_TaskManager);
             // 
-            // оПрограммеToolStripMenuItem
+            // Utilites_controlpanel
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.Utilites_controlpanel.Name = "Utilites_controlpanel";
+            this.Utilites_controlpanel.Size = new System.Drawing.Size(183, 22);
+            this.Utilites_controlpanel.Text = "Панель управления";
+            this.Utilites_controlpanel.Click += new System.EventHandler(this.Utilits_ControlPanel);
             // 
-            // справкаToolStripMenuItem
+            // Utilites_systembutton
             // 
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.справкаToolStripMenuItem.Text = "Справка";
-            this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
+            this.Utilites_systembutton.Name = "Utilites_systembutton";
+            this.Utilites_systembutton.Size = new System.Drawing.Size(183, 22);
+            this.Utilites_systembutton.Text = "О системе";
+            this.Utilites_systembutton.Click += new System.EventHandler(this.Utilits_System);
             // 
-            // toolStripDropDownButton4
+            // Functionality
             // 
-            this.toolStripDropDownButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.консольToolStripMenuItem, this.диспетчерЗадачToolStripMenuItem, this.панельУправленияToolStripMenuItem, this.оСистемеToolStripMenuItem});
-            this.toolStripDropDownButton4.Image = ((System.Drawing.Image) (resources.GetObject("toolStripDropDownButton4.Image")));
-            this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
-            this.toolStripDropDownButton4.Size = new System.Drawing.Size(67, 22);
-            this.toolStripDropDownButton4.Text = "Утилиты";
+            this.Functionality.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Functionality.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Functionality_openpipeline, this.Functionality_closepipeline, this.Functionality_openlogfile});
+            this.Functionality.Image = ((System.Drawing.Image) (resources.GetObject("Functionality.Image")));
+            this.Functionality.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Functionality.Name = "Functionality";
+            this.Functionality.Size = new System.Drawing.Size(89, 22);
+            this.Functionality.Text = "Функционал";
             // 
-            // консольToolStripMenuItem
+            // Functionality_openpipeline
             // 
-            this.консольToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.windowsToolStripMenuItem});
-            this.консольToolStripMenuItem.Name = "консольToolStripMenuItem";
-            this.консольToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.консольToolStripMenuItem.Text = "Консоль";
+            this.Functionality_openpipeline.Name = "Functionality_openpipeline";
+            this.Functionality_openpipeline.Size = new System.Drawing.Size(179, 22);
+            this.Functionality_openpipeline.Text = "Открыть канал";
+            this.Functionality_openpipeline.Click += new System.EventHandler(this.Functionality_OpenPipeLine);
             // 
-            // windowsToolStripMenuItem
+            // Functionality_closepipeline
             // 
-            this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
-            this.windowsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.windowsToolStripMenuItem.Text = "Windows";
-            this.windowsToolStripMenuItem.Click += new System.EventHandler(this.windowsToolStripMenuItem_Click);
+            this.Functionality_closepipeline.Name = "Functionality_closepipeline";
+            this.Functionality_closepipeline.Size = new System.Drawing.Size(179, 22);
+            this.Functionality_closepipeline.Text = "Закрыть канал";
+            this.Functionality_closepipeline.Click += new System.EventHandler(this.Functionality_ClosePipeLine);
             // 
-            // диспетчерЗадачToolStripMenuItem
+            // Functionality_openlogfile
             // 
-            this.диспетчерЗадачToolStripMenuItem.Name = "диспетчерЗадачToolStripMenuItem";
-            this.диспетчерЗадачToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.диспетчерЗадачToolStripMenuItem.Text = "Диспетчер задач";
-            this.диспетчерЗадачToolStripMenuItem.Click += new System.EventHandler(this.диспетчерЗадачToolStripMenuItem_Click);
-            // 
-            // панельУправленияToolStripMenuItem
-            // 
-            this.панельУправленияToolStripMenuItem.Name = "панельУправленияToolStripMenuItem";
-            this.панельУправленияToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.панельУправленияToolStripMenuItem.Text = "Панель управления";
-            this.панельУправленияToolStripMenuItem.Click += new System.EventHandler(this.панельУправленияToolStripMenuItem_Click);
-            // 
-            // оСистемеToolStripMenuItem
-            // 
-            this.оСистемеToolStripMenuItem.Name = "оСистемеToolStripMenuItem";
-            this.оСистемеToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.оСистемеToolStripMenuItem.Text = "О системе";
-            this.оСистемеToolStripMenuItem.Click += new System.EventHandler(this.оСистемеToolStripMenuItem_Click);
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(23, 23);
-            this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
+            this.Functionality_openlogfile.Name = "Functionality_openlogfile";
+            this.Functionality_openlogfile.Size = new System.Drawing.Size(179, 22);
+            this.Functionality_openlogfile.Text = "Открыть процессы";
+            this.Functionality_openlogfile.Click += new System.EventHandler(this.Functionality_OpenLogFile);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 382);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ClientSize = new System.Drawing.Size(357, 382);
+            this.Controls.Add(this.toolstrip);
+            this.Controls.Add(this.gobutton);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.backbutton);
+            this.Controls.Add(this.PathText);
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Файловый Менеджер";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PipeLineClose);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownEventHandler);
-            this.contextMenuStrip1.ResumeLayout(false);
-            this.contextMenuStrip2.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.ContextMenu1.ResumeLayout(false);
+            this.ContextMenu2.ResumeLayout(false);
+            this.toolstrip.ResumeLayout(false);
+            this.toolstrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton Functionality;
+        private System.Windows.Forms.ToolStripMenuItem Functionality_openpipeline;
+        private System.Windows.Forms.ToolStripMenuItem Functionality_closepipeline;
+        private System.Windows.Forms.ToolStripMenuItem Functionality_openlogfile;
 
-        private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem диспетчерЗадачToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem панельУправленияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оСистемеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Main_helpbutton;
 
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton4;
-        private System.Windows.Forms.ToolStripMenuItem консольToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Utilites_taskmanager;
+        private System.Windows.Forms.ToolStripMenuItem Utilites_controlpanel;
+        private System.Windows.Forms.ToolStripMenuItem Utilites_systembutton;
 
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton Utilites;
 
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
+        private System.Windows.Forms.ToolStripMenuItem Main_aboutbutton;
 
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
+        private System.Windows.Forms.ToolStripDropDownButton Main;
 
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStrip toolstrip;
+        
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu2_pastebutton;
 
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_pastebutton;
 
-        private System.Windows.Forms.ToolStripMenuItem reanameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_renamebutton;
 
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_cutbutton;
 
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_copybutton;
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem createtoolStripMenu2Item;
+        private System.Windows.Forms.ContextMenuStrip ContextMenu2;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu2_createbutton;
 
-        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_createbutton;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_deletebutton;
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button gobutton;
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip ContextMenu1;
 
         private System.Windows.Forms.ImageList imageList1;
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-
         private System.Windows.Forms.ListView listView1;
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox PathText;
+        private System.Windows.Forms.Button backbutton;
 
         #endregion
     }
