@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loging", "Loging\Loging.csproj", "{8155804D-261A-4AF2-BA5E-4724E1E3E5FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTerminal", "WinTerminal\WinTerminal.csproj", "{84B9E992-68E8-4FB4-8CF1-4B2025FF7B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinuxTerminal", "LinuxTerminal\LinuxTerminal.csproj", "{98CD5A1E-9D15-48F2-A921-F922FDEFA203}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{8155804D-261A-4AF2-BA5E-4724E1E3E5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8155804D-261A-4AF2-BA5E-4724E1E3E5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8155804D-261A-4AF2-BA5E-4724E1E3E5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B9E992-68E8-4FB4-8CF1-4B2025FF7B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B9E992-68E8-4FB4-8CF1-4B2025FF7B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B9E992-68E8-4FB4-8CF1-4B2025FF7B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B9E992-68E8-4FB4-8CF1-4B2025FF7B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98CD5A1E-9D15-48F2-A921-F922FDEFA203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98CD5A1E-9D15-48F2-A921-F922FDEFA203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98CD5A1E-9D15-48F2-A921-F922FDEFA203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98CD5A1E-9D15-48F2-A921-F922FDEFA203}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

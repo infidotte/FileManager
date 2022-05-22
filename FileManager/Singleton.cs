@@ -9,7 +9,7 @@ namespace FileManager
         public string path;
         public string[] discs;
         public string localpath;
-        private string trashpath = "C:\\FileManager\\Корзина";
+        private string trashpath;
         public bool iscopy;
         public DirectoryInfo copyinfo;
         public string dragitem;
@@ -21,6 +21,11 @@ namespace FileManager
         public string gettrashpath()
         {
             return trashpath;
+        }
+
+        public void settrashpath(string path)
+        {
+            this.trashpath = path;
         }
         public static Singleton getInstance()
         {

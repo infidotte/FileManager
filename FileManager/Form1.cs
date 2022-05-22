@@ -16,7 +16,7 @@ namespace FileManager
         {
             InitializeComponent();
             getStartDirectory();
-
+            singleton.settrashpath(FindPath("Корзина"));
             EventWatcherPolling thrd = new EventWatcherPolling();
         }
 
@@ -53,6 +53,23 @@ namespace FileManager
                 singleton.localpath = Path.Combine(singleton.path, focusedItem.Text);
             }
         }
+        //Ищет нужную папку
+        private string FindPath(string name)
+        {
+            foreach (var disc in DriveInfo.GetDrives())
+            {
+                foreach (var manag in Directory.GetDirectories(disc.Name, "FileManager"))
+                {
+                    foreach (var dirs in new DirectoryInfo(Path.Combine(disc.Name, manag)).GetDirectories(name, SearchOption.AllDirectories))
+                    {
+                        return dirs.FullName;
+                    }
+                }
+                
+            }
+            return null;
+        }
+        
         #endregion
 
         #region ListView Methods
@@ -670,7 +687,7 @@ namespace FileManager
 
         private void Functionality_OpenPipeLine(object sender, EventArgs e)
         {
-            Process.Start("C:\\FileManager\\System\\FileManager\\Loging\\bin\\Debug\\Loging.exe");
+            Process.Start(Path.Combine(FindPath("Loging"), "bin\\Debug\\Loging.exe"));
             singleton.locker = true;
         }
 
@@ -684,7 +701,21 @@ namespace FileManager
         {
             Process.Start("logfile.txt");
         }
+        
+        private void Terminals_linux_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.Combine(FindPath("LinuxTerminal"), "bin\\Debug\\LinuxTerminal.exe"));
 
+        }
+
+        private void Terminals_windows_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.Combine(FindPath("WinTerminal"), "bin\\Debug\\WinTerminal.exe"));
+        }
         #endregion
+
+        
+
+        
     }
 }

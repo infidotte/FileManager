@@ -1,0 +1,7 @@
+C:\FileManager\System\FileManager\WinTerminal\bin\Debug\WinTerminal.exe
+C:\FileManager\System\FileManager\WinTerminal\bin\Debug\WinTerminal.pdb
+C:\FileManager\System\FileManager\WinTerminal\obj\Debug\WinTerminal.csproj.AssemblyReference.cache
+C:\FileManager\System\FileManager\WinTerminal\obj\Debug\WinTerminal.csproj.SuggestedBindingRedirects.cache
+C:\FileManager\System\FileManager\WinTerminal\obj\Debug\WinTerminal.csproj.CoreCompileInputs.cache
+C:\FileManager\System\FileManager\WinTerminal\obj\Debug\WinTerminal.exe
+C:\FileManager\System\FileManager\WinTerminal\obj\Debug\WinTerminal.pdb

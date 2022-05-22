@@ -1,0 +1,7 @@
+C:\FileManager\System\FileManager\LinuxTerminal\bin\Debug\LinuxTerminal.exe
+C:\FileManager\System\FileManager\LinuxTerminal\bin\Debug\LinuxTerminal.pdb
+C:\FileManager\System\FileManager\LinuxTerminal\obj\Debug\LinuxTerminal.csproj.AssemblyReference.cache
+C:\FileManager\System\FileManager\LinuxTerminal\obj\Debug\LinuxTerminal.csproj.SuggestedBindingRedirects.cache
+C:\FileManager\System\FileManager\LinuxTerminal\obj\Debug\LinuxTerminal.csproj.CoreCompileInputs.cache
+C:\FileManager\System\FileManager\LinuxTerminal\obj\Debug\LinuxTerminal.exe
+C:\FileManager\System\FileManager\LinuxTerminal\obj\Debug\LinuxTerminal.pdb

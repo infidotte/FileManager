@@ -61,6 +61,9 @@ namespace FileManager
             this.Functionality_openpipeline = new System.Windows.Forms.ToolStripMenuItem();
             this.Functionality_closepipeline = new System.Windows.Forms.ToolStripMenuItem();
             this.Functionality_openlogfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.Terminals = new System.Windows.Forms.ToolStripMenuItem();
+            this.Terminals_linux = new System.Windows.Forms.ToolStripMenuItem();
+            this.Terminals_windows = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenu1.SuspendLayout();
             this.ContextMenu2.SuspendLayout();
             this.toolstrip.SuspendLayout();
@@ -265,7 +268,7 @@ namespace FileManager
             // Functionality
             // 
             this.Functionality.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Functionality.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Functionality_openpipeline, this.Functionality_closepipeline, this.Functionality_openlogfile});
+            this.Functionality.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Functionality_openpipeline, this.Functionality_closepipeline, this.Functionality_openlogfile, this.Terminals});
             this.Functionality.Image = ((System.Drawing.Image) (resources.GetObject("Functionality.Image")));
             this.Functionality.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Functionality.Name = "Functionality";
@@ -293,6 +296,27 @@ namespace FileManager
             this.Functionality_openlogfile.Text = "Открыть процессы";
             this.Functionality_openlogfile.Click += new System.EventHandler(this.Functionality_OpenLogFile);
             // 
+            // Terminals
+            // 
+            this.Terminals.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Terminals_linux, this.Terminals_windows});
+            this.Terminals.Name = "Terminals";
+            this.Terminals.Size = new System.Drawing.Size(179, 22);
+            this.Terminals.Text = "Терминалы";
+            // 
+            // Terminals_linux
+            // 
+            this.Terminals_linux.Name = "Terminals_linux";
+            this.Terminals_linux.Size = new System.Drawing.Size(123, 22);
+            this.Terminals_linux.Text = "Linux";
+            this.Terminals_linux.Click += new System.EventHandler(this.Terminals_linux_Click);
+            // 
+            // Terminals_windows
+            // 
+            this.Terminals_windows.Name = "Terminals_windows";
+            this.Terminals_windows.Size = new System.Drawing.Size(123, 22);
+            this.Terminals_windows.Text = "Windows";
+            this.Terminals_windows.Click += new System.EventHandler(this.Terminals_windows_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,6 +342,10 @@ namespace FileManager
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem Terminals;
+        private System.Windows.Forms.ToolStripMenuItem Terminals_linux;
+        private System.Windows.Forms.ToolStripMenuItem Terminals_windows;
 
         private System.Windows.Forms.ToolStripDropDownButton Functionality;
         private System.Windows.Forms.ToolStripMenuItem Functionality_openpipeline;
