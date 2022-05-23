@@ -45,10 +45,12 @@ namespace FileManager
             this.ContextMenu1_cutbutton = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenu1_renamebutton = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenu1_pastebutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu1_cleare = new System.Windows.Forms.ToolStripMenuItem();
             this.gobutton = new System.Windows.Forms.Button();
             this.ContextMenu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ContextMenu2_createbutton = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenu2_pastebutton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenu2_cleare = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip = new System.Windows.Forms.ToolStrip();
             this.Main = new System.Windows.Forms.ToolStripDropDownButton();
             this.Main_aboutbutton = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +86,7 @@ namespace FileManager
             this.backbutton.Name = "backbutton";
             this.backbutton.Size = new System.Drawing.Size(17, 19);
             this.backbutton.TabIndex = 1;
-            this.backbutton.Text = "«";
+            this.backbutton.Text = "⨞";
             this.backbutton.UseVisualStyleBackColor = true;
             this.backbutton.Click += new System.EventHandler(this.OnBackButtonClick);
             // 
@@ -119,9 +121,9 @@ namespace FileManager
             // 
             // ContextMenu1
             // 
-            this.ContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu1_createbutton, this.ContextMenu1_deletebutton, this.ContextMenu1_copybutton, this.ContextMenu1_cutbutton, this.ContextMenu1_renamebutton, this.ContextMenu1_pastebutton});
+            this.ContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu1_createbutton, this.ContextMenu1_deletebutton, this.ContextMenu1_copybutton, this.ContextMenu1_cutbutton, this.ContextMenu1_renamebutton, this.ContextMenu1_pastebutton, this.ContextMenu1_cleare});
             this.ContextMenu1.Name = "ContextMenu1";
-            this.ContextMenu1.Size = new System.Drawing.Size(165, 136);
+            this.ContextMenu1.Size = new System.Drawing.Size(165, 158);
             // 
             // ContextMenu1_createbutton
             // 
@@ -170,6 +172,13 @@ namespace FileManager
             this.ContextMenu1_pastebutton.Text = "Paste";
             this.ContextMenu1_pastebutton.Click += new System.EventHandler(this.ContextMenu1_PasteButton);
             // 
+            // ContextMenu1_cleare
+            // 
+            this.ContextMenu1_cleare.Name = "ContextMenu1_cleare";
+            this.ContextMenu1_cleare.Size = new System.Drawing.Size(164, 22);
+            this.ContextMenu1_cleare.Text = "Cleare";
+            this.ContextMenu1_cleare.Click += new System.EventHandler(this.ContextMenu1_cleare_Click);
+            // 
             // gobutton
             // 
             this.gobutton.Location = new System.Drawing.Point(328, 26);
@@ -177,15 +186,15 @@ namespace FileManager
             this.gobutton.Name = "gobutton";
             this.gobutton.Size = new System.Drawing.Size(17, 19);
             this.gobutton.TabIndex = 6;
-            this.gobutton.Text = "»";
+            this.gobutton.Text = "🔎";
             this.gobutton.UseVisualStyleBackColor = true;
             this.gobutton.Click += new System.EventHandler(this.onGoButtonClick);
             // 
             // ContextMenu2
             // 
-            this.ContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu2_createbutton, this.ContextMenu2_pastebutton});
+            this.ContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu2_createbutton, this.ContextMenu2_pastebutton, this.ContextMenu2_cleare});
             this.ContextMenu2.Name = "ContextMenu1";
-            this.ContextMenu2.Size = new System.Drawing.Size(144, 48);
+            this.ContextMenu2.Size = new System.Drawing.Size(144, 70);
             // 
             // ContextMenu2_createbutton
             // 
@@ -202,12 +211,19 @@ namespace FileManager
             this.ContextMenu2_pastebutton.Text = "Paste";
             this.ContextMenu2_pastebutton.Click += new System.EventHandler(this.ContextMenu2_PasteButton);
             // 
+            // ContextMenu2_cleare
+            // 
+            this.ContextMenu2_cleare.Name = "ContextMenu2_cleare";
+            this.ContextMenu2_cleare.Size = new System.Drawing.Size(143, 22);
+            this.ContextMenu2_cleare.Text = "Cleare";
+            this.ContextMenu2_cleare.Click += new System.EventHandler(this.ContextMenu2_cleare_Click);
+            // 
             // toolstrip
             // 
             this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Main, this.Utilites, this.Functionality});
             this.toolstrip.Location = new System.Drawing.Point(0, 0);
             this.toolstrip.Name = "toolstrip";
-            this.toolstrip.Size = new System.Drawing.Size(357, 25);
+            this.toolstrip.Size = new System.Drawing.Size(354, 25);
             this.toolstrip.TabIndex = 7;
             this.toolstrip.Text = "toolStrip1";
             // 
@@ -217,20 +233,20 @@ namespace FileManager
             this.Main.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Main_aboutbutton, this.Main_helpbutton});
             this.Main.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Main.Name = "Main";
-            this.Main.Size = new System.Drawing.Size(65, 22);
-            this.Main.Text = "Главное";
+            this.Main.Size = new System.Drawing.Size(77, 22);
+            this.Main.Text = "Главное⚙";
             // 
             // Main_aboutbutton
             // 
             this.Main_aboutbutton.Name = "Main_aboutbutton";
-            this.Main_aboutbutton.Size = new System.Drawing.Size(149, 22);
+            this.Main_aboutbutton.Size = new System.Drawing.Size(152, 22);
             this.Main_aboutbutton.Text = "О программе";
             this.Main_aboutbutton.Click += new System.EventHandler(this.Main_About);
             // 
             // Main_helpbutton
             // 
             this.Main_helpbutton.Name = "Main_helpbutton";
-            this.Main_helpbutton.Size = new System.Drawing.Size(149, 22);
+            this.Main_helpbutton.Size = new System.Drawing.Size(152, 22);
             this.Main_helpbutton.Text = "Справка";
             this.Main_helpbutton.Click += new System.EventHandler(this.Main_Help);
             // 
@@ -241,8 +257,8 @@ namespace FileManager
             this.Utilites.Image = ((System.Drawing.Image) (resources.GetObject("Utilites.Image")));
             this.Utilites.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Utilites.Name = "Utilites";
-            this.Utilites.Size = new System.Drawing.Size(67, 22);
-            this.Utilites.Text = "Утилиты";
+            this.Utilites.Size = new System.Drawing.Size(79, 22);
+            this.Utilites.Text = "Утилиты🧰";
             // 
             // Utilites_taskmanager
             // 
@@ -272,8 +288,8 @@ namespace FileManager
             this.Functionality.Image = ((System.Drawing.Image) (resources.GetObject("Functionality.Image")));
             this.Functionality.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Functionality.Name = "Functionality";
-            this.Functionality.Size = new System.Drawing.Size(89, 22);
-            this.Functionality.Text = "Функционал";
+            this.Functionality.Size = new System.Drawing.Size(101, 22);
+            this.Functionality.Text = "Функционал🔨";
             // 
             // Functionality_openpipeline
             // 
@@ -322,7 +338,7 @@ namespace FileManager
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(357, 382);
+            this.ClientSize = new System.Drawing.Size(354, 381);
             this.Controls.Add(this.toolstrip);
             this.Controls.Add(this.gobutton);
             this.Controls.Add(this.listView1);
@@ -332,7 +348,7 @@ namespace FileManager
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Файловый Менеджер";
+            this.Text = "Файловый Менеджер📁";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PipeLineClose);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownEventHandler);
             this.ContextMenu1.ResumeLayout(false);
@@ -342,6 +358,9 @@ namespace FileManager
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu1_cleare;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenu2_cleare;
 
         private System.Windows.Forms.ToolStripMenuItem Terminals;
         private System.Windows.Forms.ToolStripMenuItem Terminals_linux;

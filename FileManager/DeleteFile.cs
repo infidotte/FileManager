@@ -36,7 +36,15 @@ namespace FileManager
         private void totrash_Click(object sender, EventArgs e)
         {
             DirectoryInfo info = new DirectoryInfo(localpath);
-            info.MoveTo(trashpath+"\\"+info.Name);
+            try
+            {
+                info.MoveTo(trashpath + "\\" + info.Name);
+                
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
             Close();
         }
         

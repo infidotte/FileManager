@@ -77,37 +77,46 @@ namespace FileManager
         //Происходит при активации элемента ListView(Double-Click)
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.SelectedItems[0];
+            ListViewItem item = listView1.FocusedItem;
 
-            if (singleton.discs.Contains(item.Text) || singleton.discs.Contains(singleton.path))
+            if (singleton.path.Length>3 && new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed && item.Text.Equals("System"))
             {
-                singleton.path += item.Text;
+                MessageBox.Show("No access!");
             }
             else
             {
-                singleton.path = Path.Combine(singleton.path, item.Text);
-            }
-
-            try
-            {
-                DirectoryInfo info = new DirectoryInfo(singleton.path);
-                if ((info.Attributes & FileAttributes.Directory) == 0)
+                if (singleton.discs.Contains(item.Text) || singleton.discs.Contains(singleton.path))
                 {
-                    string way = singleton.path;
-                    PathText.Text = singleton.path = Directory.GetParent(singleton.path).FullName;
-                    Process.Start(way);
+                    singleton.path += item.Text;
                 }
                 else
                 {
-                    listView1.Clear();
-                    PathText.Text = singleton.path;
-                    getFilesAndDirs(info);
+                    singleton.path = Path.Combine(singleton.path, item.Text);
+                }
+
+                try
+                {
+                    DirectoryInfo info = new DirectoryInfo(singleton.path);
+                    if ((info.Attributes & FileAttributes.Directory) == 0)
+                    {
+                        string way = singleton.path;
+                        PathText.Text = singleton.path = Directory.GetParent(singleton.path).FullName;
+                        Process.Start(way);
+                    }
+                    else
+                    {
+                        listView1.Clear();
+                        PathText.Text = singleton.path;
+                        getFilesAndDirs(info);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
                 }
             }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
+            
+            
         }
         
         private void listView1_MouseUp(object sender, MouseEventArgs e)
@@ -129,6 +138,7 @@ namespace FileManager
                             ContextMenu1_cutbutton.Visible = false;
                             ContextMenu1_renamebutton.Visible = false;
                             ContextMenu1_pastebutton.Visible = false;
+                            ContextMenu1_cleare.Visible = false;
                         }
                         else
                         {
@@ -138,6 +148,7 @@ namespace FileManager
                             ContextMenu1_cutbutton.Visible = false;
                             ContextMenu1_renamebutton.Visible = false;
                             ContextMenu1_pastebutton.Visible = true;
+                            ContextMenu1_cleare.Visible = false;
                         }
                     }
                     else if (new DriveInfo(singleton.localpath.Substring(0, 3)).DriveType == DriveType.Fixed &&
@@ -149,6 +160,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = false;
                         ContextMenu1_renamebutton.Visible = false;
                         ContextMenu1_pastebutton.Visible = false;
+                        ContextMenu1_cleare.Visible = false;
                     }
                     else if (focus.Text == "Корзина")
                     {
@@ -158,17 +170,19 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = false;
                         ContextMenu1_renamebutton.Visible = false;
                         ContextMenu1_pastebutton.Visible = true;
+                        ContextMenu1_cleare.Visible = true;
                     }
 
                     else if (singleton.localpath.Split('\\').Length == 2 &&
                              singleton.localpath.Split('\\')[1].Equals("FileManager"))
                     {
                         ContextMenu1_deletebutton.Visible = false;
-                        ContextMenu1_createbutton.Visible = false;
+                        ContextMenu1_createbutton.Visible = true;
                         ContextMenu1_copybutton.Visible = false;
                         ContextMenu1_cutbutton.Visible = false;
                         ContextMenu1_renamebutton.Visible = false;
                         ContextMenu1_pastebutton.Visible = true;
+                        ContextMenu1_cleare.Visible = false;
                     }
                     else if ((new DirectoryInfo(singleton.localpath).Attributes & FileAttributes.Directory) == 0)
                     {
@@ -178,6 +192,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = true;
                         ContextMenu1_renamebutton.Visible = true;
                         ContextMenu1_pastebutton.Visible = false;
+                        ContextMenu1_cleare.Visible = false;
                     }
                     else
                     {
@@ -187,6 +202,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = true;
                         ContextMenu1_renamebutton.Visible = true;
                         ContextMenu1_pastebutton.Visible = true;
+                        ContextMenu1_cleare.Visible = false;
                     }
 
                     ContextMenu1.Show(Cursor.Position);
@@ -197,6 +213,7 @@ namespace FileManager
                     {
                         ContextMenu2_createbutton.Visible = false;
                         ContextMenu2_pastebutton.Visible = false;
+                        ContextMenu2_cleare.Visible = false;
                     }
                     else if (singleton.path.Length == 3)
                     {
@@ -204,28 +221,39 @@ namespace FileManager
                         {
                             ContextMenu2_createbutton.Visible = false;
                             ContextMenu2_pastebutton.Visible = false;
+                            ContextMenu2_cleare.Visible = false;
                         }
                         else
                         {
                             ContextMenu2_createbutton.Visible = true;
                             ContextMenu2_pastebutton.Visible = true;
+                            ContextMenu2_cleare.Visible = false;
                         }
                     }
                     else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType != DriveType.Fixed)
                     {
                         ContextMenu2_createbutton.Visible = true;
                         ContextMenu2_pastebutton.Visible = true;
+                        ContextMenu2_cleare.Visible = false;
                     }
                     else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed &&
                              singleton.path.Contains("System"))
                     {
                         ContextMenu2_createbutton.Visible = false;
                         ContextMenu2_pastebutton.Visible = false;
+                        ContextMenu2_cleare.Visible = false;
+                    }
+                    else if (singleton.path.Equals(singleton.gettrashpath()))
+                    {
+                        ContextMenu2_createbutton.Visible = true;
+                        ContextMenu2_pastebutton.Visible = true;
+                        ContextMenu2_cleare.Visible = true;
                     }
                     else
                     {
                         ContextMenu2_createbutton.Visible = true;
                         ContextMenu2_pastebutton.Visible = true;
+                        ContextMenu2_cleare.Visible = false;
                     }
 
                     ContextMenu2.Show(Cursor.Position);
@@ -395,6 +423,43 @@ namespace FileManager
             PasteDirectory(local);
             listView1.Clear();
             getFilesAndDirs(info);
+        }
+        private void ContextMenu1_cleare_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = listView1.FocusedItem;
+            setLocalPath(item);
+            
+            if (singleton.localpath.Equals(singleton.gettrashpath()))
+            {
+                DirectoryInfo info = new DirectoryInfo(singleton.localpath);
+                foreach (var dirs in info.GetDirectories())
+                {
+                    dirs.Delete(true);
+                }
+
+                foreach (var file in info.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
+        }
+        private void ContextMenu2_cleare_Click(object sender, EventArgs e)
+        {
+            if (singleton.path.Equals(singleton.gettrashpath()))
+            {
+                DirectoryInfo info = new DirectoryInfo(singleton.path);
+                foreach (var dirs in info.GetDirectories())
+                {
+                    dirs.Delete(true);
+                }
+
+                foreach (var file in info.GetFiles())
+                {
+                    file.Delete();
+                }
+                listView1.Clear();
+                getFilesAndDirs(info);
+            }
         }
 
         private void ContextMenu2_PasteButton(object sender, EventArgs e)
@@ -713,8 +778,6 @@ namespace FileManager
             Process.Start(Path.Combine(FindPath("WinTerminal"), "bin\\Debug\\WinTerminal.exe"));
         }
         #endregion
-
-        
 
         
     }
