@@ -33,8 +33,6 @@ namespace WinTerminal
                 switch (arguments[0])
                 {
                     case "tasklist":
-                        //tasklist
-
                         if (arguments.Length == 1)
                         {
                             foreach (var VARIABLE in Process.GetProcesses())
@@ -52,8 +50,6 @@ namespace WinTerminal
                                 Console.WriteLine(VARIABLE.ProcessName + " " + VARIABLE.Id + " " + VARIABLE.SessionId +
                                                   " " +
                                                   sessionname + " " + VARIABLE.WorkingSet64 / 1024 + " KB");
-                                //linux
-                                //Console.WriteLine(VARIABLE.Id + " " + VARIABLE.TotalProcessorTime + " " + VARIABLE.ProcessName);
                             }
                         }
                         else

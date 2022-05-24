@@ -89,7 +89,7 @@ namespace FileManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(212, 79);
+            this.ClientSize = new System.Drawing.Size(213, 79);
             this.Controls.Add(this.extension);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

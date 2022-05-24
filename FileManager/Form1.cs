@@ -21,11 +21,11 @@ namespace FileManager
         }
 
         #region Directory and Path methods
+
         //Выводит стартовую директорию
         private void getStartDirectory()
         {
             PathText.Text = "";
-
             singleton.path = "";
             singleton.discs = Environment.GetLogicalDrives();
             listView1.Clear();
@@ -41,6 +41,7 @@ namespace FileManager
                 }
             }
         }
+
         //Устанавливает локальную путь (Путь выбранного элемента)
         private void setLocalPath(ListViewItem focusedItem)
         {
@@ -53,6 +54,7 @@ namespace FileManager
                 singleton.localpath = Path.Combine(singleton.path, focusedItem.Text);
             }
         }
+
         //Ищет нужную папку
         private string FindPath(string name)
         {
@@ -60,17 +62,20 @@ namespace FileManager
             {
                 foreach (var manag in Directory.GetDirectories(disc.Name, "FileManager"))
                 {
-                    foreach (var dirs in new DirectoryInfo(Path.Combine(disc.Name, manag)).GetDirectories(name, SearchOption.AllDirectories))
+                    foreach (var dirs in new DirectoryInfo(Path.Combine(disc.Name, manag)).GetDirectories(name,
+                                 SearchOption.AllDirectories))
                     {
                         return dirs.FullName;
                     }
                 }
-                
             }
+
             return null;
         }
-        
+
         #endregion
+
+        //done
 
         #region ListView Methods
 
@@ -79,7 +84,9 @@ namespace FileManager
         {
             ListViewItem item = listView1.FocusedItem;
 
-            if (singleton.path.Length>3 && new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed && item.Text.Equals("System"))
+            if (singleton.path.Length > 3 &&
+                new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed &&
+                item.Text.Equals("System"))
             {
                 MessageBox.Show("No access!");
             }
@@ -115,10 +122,9 @@ namespace FileManager
                     MessageBox.Show(exception.Message);
                 }
             }
-            
-            
         }
-        
+
+        //Происходит при отжатии правой кнопки мыши для вызова контекстных меню
         private void listView1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -138,7 +144,7 @@ namespace FileManager
                             ContextMenu1_cutbutton.Visible = false;
                             ContextMenu1_renamebutton.Visible = false;
                             ContextMenu1_pastebutton.Visible = false;
-                            ContextMenu1_cleare.Visible = false;
+                            ContextMenu1_clear.Visible = false;
                         }
                         else
                         {
@@ -148,7 +154,7 @@ namespace FileManager
                             ContextMenu1_cutbutton.Visible = false;
                             ContextMenu1_renamebutton.Visible = false;
                             ContextMenu1_pastebutton.Visible = true;
-                            ContextMenu1_cleare.Visible = false;
+                            ContextMenu1_clear.Visible = false;
                         }
                     }
                     else if (new DriveInfo(singleton.localpath.Substring(0, 3)).DriveType == DriveType.Fixed &&
@@ -160,7 +166,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = false;
                         ContextMenu1_renamebutton.Visible = false;
                         ContextMenu1_pastebutton.Visible = false;
-                        ContextMenu1_cleare.Visible = false;
+                        ContextMenu1_clear.Visible = false;
                     }
                     else if (focus.Text == "Корзина")
                     {
@@ -170,7 +176,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = false;
                         ContextMenu1_renamebutton.Visible = false;
                         ContextMenu1_pastebutton.Visible = true;
-                        ContextMenu1_cleare.Visible = true;
+                        ContextMenu1_clear.Visible = true;
                     }
 
                     else if (singleton.localpath.Split('\\').Length == 2 &&
@@ -182,7 +188,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = false;
                         ContextMenu1_renamebutton.Visible = false;
                         ContextMenu1_pastebutton.Visible = true;
-                        ContextMenu1_cleare.Visible = false;
+                        ContextMenu1_clear.Visible = false;
                     }
                     else if ((new DirectoryInfo(singleton.localpath).Attributes & FileAttributes.Directory) == 0)
                     {
@@ -192,7 +198,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = true;
                         ContextMenu1_renamebutton.Visible = true;
                         ContextMenu1_pastebutton.Visible = false;
-                        ContextMenu1_cleare.Visible = false;
+                        ContextMenu1_clear.Visible = false;
                     }
                     else
                     {
@@ -202,7 +208,7 @@ namespace FileManager
                         ContextMenu1_cutbutton.Visible = true;
                         ContextMenu1_renamebutton.Visible = true;
                         ContextMenu1_pastebutton.Visible = true;
-                        ContextMenu1_cleare.Visible = false;
+                        ContextMenu1_clear.Visible = false;
                     }
 
                     ContextMenu1.Show(Cursor.Position);
@@ -213,7 +219,7 @@ namespace FileManager
                     {
                         ContextMenu2_createbutton.Visible = false;
                         ContextMenu2_pastebutton.Visible = false;
-                        ContextMenu2_cleare.Visible = false;
+                        ContextMenu2_clear.Visible = false;
                     }
                     else if (singleton.path.Length == 3)
                     {
@@ -221,39 +227,33 @@ namespace FileManager
                         {
                             ContextMenu2_createbutton.Visible = false;
                             ContextMenu2_pastebutton.Visible = false;
-                            ContextMenu2_cleare.Visible = false;
+                            ContextMenu2_clear.Visible = false;
                         }
                         else
                         {
                             ContextMenu2_createbutton.Visible = true;
                             ContextMenu2_pastebutton.Visible = true;
-                            ContextMenu2_cleare.Visible = false;
+                            ContextMenu2_clear.Visible = false;
                         }
-                    }
-                    else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType != DriveType.Fixed)
-                    {
-                        ContextMenu2_createbutton.Visible = true;
-                        ContextMenu2_pastebutton.Visible = true;
-                        ContextMenu2_cleare.Visible = false;
                     }
                     else if (new DriveInfo(singleton.path.Substring(0, 3)).DriveType == DriveType.Fixed &&
                              singleton.path.Contains("System"))
                     {
                         ContextMenu2_createbutton.Visible = false;
                         ContextMenu2_pastebutton.Visible = false;
-                        ContextMenu2_cleare.Visible = false;
+                        ContextMenu2_clear.Visible = false;
                     }
                     else if (singleton.path.Equals(singleton.gettrashpath()))
                     {
                         ContextMenu2_createbutton.Visible = true;
                         ContextMenu2_pastebutton.Visible = true;
-                        ContextMenu2_cleare.Visible = true;
+                        ContextMenu2_clear.Visible = true;
                     }
                     else
                     {
                         ContextMenu2_createbutton.Visible = true;
                         ContextMenu2_pastebutton.Visible = true;
-                        ContextMenu2_cleare.Visible = false;
+                        ContextMenu2_clear.Visible = false;
                     }
 
                     ContextMenu2.Show(Cursor.Position);
@@ -261,7 +261,9 @@ namespace FileManager
             }
         }
 
-        #endregion
+        #endregion //
+
+//done
 
         #region Back and Go buttons ( "<" & ">" )
 
@@ -307,6 +309,8 @@ namespace FileManager
 
         #endregion
 
+//done
+
         #region Get files and directorys methods
 
         //Получает файлы и дериктории 
@@ -349,6 +353,8 @@ namespace FileManager
 
         #endregion
 
+//done
+
         #region Context Menu Methods
 
         private void ContextMenu1_CreateButton(object sender, EventArgs e)
@@ -382,25 +388,18 @@ namespace FileManager
 
         private void ContextMenu1_CopyButton(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
-            setLocalPath(item);
-
             singleton.copyinfo = new DirectoryInfo(singleton.localpath);
             singleton.iscopy = true;
         }
 
         private void ContextMenu1_CutButton(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
-            setLocalPath(item);
             singleton.copyinfo = new DirectoryInfo(singleton.localpath);
             singleton.iscopy = false;
         }
 
         private void ContextMenu1_RenameButton(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
-            setLocalPath(item);
             DirectoryInfo info = new DirectoryInfo(singleton.localpath);
             Rename rename = new Rename(Cursor.Position, info);
             rename.ShowDialog();
@@ -416,47 +415,73 @@ namespace FileManager
 
         private void ContextMenu1_PasteButton(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
-            setLocalPath(item);
             DirectoryInfo info = new DirectoryInfo(singleton.path);
             DirectoryInfo local = new DirectoryInfo(singleton.localpath);
             PasteDirectory(local);
             listView1.Clear();
             getFilesAndDirs(info);
         }
-        private void ContextMenu1_cleare_Click(object sender, EventArgs e)
+
+        private void ContextMenu1_clear_Click(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.FocusedItem;
-            setLocalPath(item);
-            
             if (singleton.localpath.Equals(singleton.gettrashpath()))
             {
                 DirectoryInfo info = new DirectoryInfo(singleton.localpath);
                 foreach (var dirs in info.GetDirectories())
                 {
-                    dirs.Delete(true);
+                    try
+                    {
+                        dirs.Delete(true);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
 
                 foreach (var file in info.GetFiles())
                 {
-                    file.Delete();
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
             }
         }
-        private void ContextMenu2_cleare_Click(object sender, EventArgs e)
+
+        private void ContextMenu2_clear_Click(object sender, EventArgs e)
         {
             if (singleton.path.Equals(singleton.gettrashpath()))
             {
                 DirectoryInfo info = new DirectoryInfo(singleton.path);
                 foreach (var dirs in info.GetDirectories())
                 {
-                    dirs.Delete(true);
+                    try
+                    {
+                        dirs.Delete(true);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
 
                 foreach (var file in info.GetFiles())
                 {
-                    file.Delete();
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
+
                 listView1.Clear();
                 getFilesAndDirs(info);
             }
@@ -470,23 +495,36 @@ namespace FileManager
             getFilesAndDirs(info);
         }
 
-        private void PasteDirectory(DirectoryInfo local1)
+        private void PasteDirectory(DirectoryInfo local)
         {
             DirectoryInfo info = singleton.copyinfo;
-            DirectoryInfo local = local1;
             if ((info.Attributes & FileAttributes.Directory) != 0)
             {
                 //dir
                 if (singleton.iscopy)
                 {
-                    Directory.CreateDirectory(local.FullName + "\\" + info.Name);
-                    DirectoryInfo destinfo = new DirectoryInfo(local.FullName + "\\" + info.Name);
-                    CopyDirectory(info.FullName, destinfo.FullName, true);
+                    try
+                    {
+                        Directory.CreateDirectory(local.FullName + "\\" + info.Name);
+                        DirectoryInfo destinfo = new DirectoryInfo(local.FullName + "\\" + info.Name);
+                        CopyDirectory(info.FullName, destinfo.FullName, true);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
                 else
                 {
-                    Directory.Move(info.FullName, local.FullName + "\\" + info.Name);
-                    //cut
+                    try
+                    {
+                        Directory.Move(info.FullName, local.FullName + "\\" + info.Name);
+                        //cut
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
             }
             else
@@ -494,11 +532,26 @@ namespace FileManager
                 //file
                 if (singleton.iscopy)
                 {
-                    File.Copy(info.FullName, local.FullName + "\\" + info.Name);
+                    try
+                    {
+                        File.Copy(info.FullName, local.FullName + "\\" + info.Name);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
                 else
                 {
-                    File.Move(info.FullName, local.FullName + "\\" + info.Name);
+                    try
+                    {
+                        File.Move(info.FullName, local.FullName + "\\" + info.Name);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+
                     //cut
                 }
             }
@@ -535,6 +588,8 @@ namespace FileManager
 
         #endregion
 
+        //done
+
         #region Main and Utilits
 
         private void Main_About(object sender, EventArgs e)
@@ -564,7 +619,7 @@ namespace FileManager
         }
 
         #endregion
-
+//done
         #region override methods
 
         protected override void WndProc(ref Message m)
@@ -585,14 +640,15 @@ namespace FileManager
 
                         break;
                     case DBT_DEVICEREMOVECOMPLETE:
-                        getStartDirectory();
+                        if (singleton.path.Length >= 3 && new DriveInfo(singleton.path.Substring(0, 3)).DriveType != DriveType.Fixed)
+                            getStartDirectory();
                         break;
                 }
             }
         }
 
         #endregion
-
+//done
         #region HotKeys
 
         private void KeyDownEventHandler(object sender, KeyEventArgs e)
@@ -602,7 +658,8 @@ namespace FileManager
                 if (e.Control && e.KeyCode == Keys.V)
                 {
                     ContextMenu2_PasteButton(sender, e);
-                    e.SuppressKeyPress = true; // Stops other controls on the form receiving event.
+                    // Stops other controls on the form receiving event.
+                    e.SuppressKeyPress = true;
                 }
             }
             else
@@ -631,7 +688,7 @@ namespace FileManager
         }
 
         #endregion
-
+        //done
         #region Drag&Drop
 
         private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
@@ -702,7 +759,6 @@ namespace FileManager
                     }
                 }
             }
-
             listView1.Clear();
             getFilesAndDirs(new DirectoryInfo(singleton.path));
         }
@@ -766,19 +822,17 @@ namespace FileManager
         {
             Process.Start("logfile.txt");
         }
-        
+
         private void Terminals_linux_Click(object sender, EventArgs e)
         {
             Process.Start(Path.Combine(FindPath("LinuxTerminal"), "bin\\Debug\\LinuxTerminal.exe"));
-
         }
 
         private void Terminals_windows_Click(object sender, EventArgs e)
         {
             Process.Start(Path.Combine(FindPath("WinTerminal"), "bin\\Debug\\WinTerminal.exe"));
         }
-        #endregion
 
-        
+        #endregion
     }
 }

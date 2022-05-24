@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace FileManager
 {
-    
     public partial class DeleteFile : Form
     {
         private string localpath;
         private string trashpath;
+
         public DeleteFile(Point point, string localpath, string trashpath)
         {
             InitializeComponent();
@@ -23,13 +23,27 @@ namespace FileManager
             DirectoryInfo info = new DirectoryInfo(localpath);
             if ((info.Attributes & FileAttributes.Directory) != 0)
             {
-                info.Delete(true);
+                try
+                {
+                    info.Delete(true);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
             else
             {
-                File.Delete(localpath);
+                try
+                {
+                    File.Delete(localpath);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
-            
+
             Close();
         }
 
@@ -39,14 +53,13 @@ namespace FileManager
             try
             {
                 info.MoveTo(trashpath + "\\" + info.Name);
-                
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
+
             Close();
         }
-        
     }
 }

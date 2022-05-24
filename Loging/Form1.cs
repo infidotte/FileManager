@@ -24,12 +24,6 @@ namespace Loging
             thread.Start();
         }
 
-        public void disconnect(object sender, EventArgs e)
-        {
-            pipeClientStream.Dispose();
-            pipeClientStream.Close();
-        }
-
         public void pipelineThread()
         {
             while (true)

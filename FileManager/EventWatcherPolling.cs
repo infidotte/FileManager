@@ -30,7 +30,8 @@ namespace FileManager
                 {
                     using (StreamWriter writer = new StreamWriter(logfile, true))
                     {
-                        string message = getProcessUser(Convert.ToInt32(e.NewEvent.Properties["ProcessID"].Value)) + " | " + e.NewEvent.Properties["ProcessName"].Value + " открыт в " +
+                        string message = getProcessUser(Convert.ToInt32(e.NewEvent.Properties["ProcessID"].Value)) + 
+                                         " | " + e.NewEvent.Properties["ProcessName"].Value + " открыт в " +
                                          DateTime.Now + "\n";
                         writer.Write(message);
                         if (Program.singleton.locker)
@@ -54,7 +55,8 @@ namespace FileManager
                 {
                     using (StreamWriter writer = new StreamWriter(logfile, true))
                     {
-                        string message = getProcessUser(Convert.ToInt32(e.NewEvent.Properties["ProcessID"].Value)) + " | " + e.NewEvent.Properties["ProcessName"].Value + " закрыт в " +
+                        string message = getProcessUser(Convert.ToInt32(e.NewEvent.Properties["ProcessID"].Value)) + 
+                                         " | " + e.NewEvent.Properties["ProcessName"].Value + " закрыт в " +
                                          DateTime.Now + "\n";
                         writer.Write(message);
                         if (Program.singleton.locker)
@@ -71,7 +73,8 @@ namespace FileManager
         }
         public string getProcessUser(int idprocess)//Вывод пользователя процесса
         {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("Select * From Win32_Process Where ProcessID = " + idprocess);
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("Select * From Win32_Process Where ProcessID = "
+                                                                             + idprocess);
             ManagementObjectCollection collection = searcher.Get();
             foreach (ManagementObject obj in collection)
             {
