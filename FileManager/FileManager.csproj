@@ -53,6 +53,12 @@
         <Compile Include="CreateFile.Designer.cs">
           <DependentUpon>CreateFile.cs</DependentUpon>
         </Compile>
+        <Compile Include="CreateLog.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="CreateLog.Designer.cs">
+          <DependentUpon>CreateLog.cs</DependentUpon>
+        </Compile>
         <Compile Include="DeleteFile.cs">
           <SubType>Form</SubType>
         </Compile>
@@ -77,6 +83,9 @@
         <Compile Include="Singleton.cs" />
         <EmbeddedResource Include="CreateFile.resx">
           <DependentUpon>CreateFile.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="CreateLog.resx">
+          <DependentUpon>CreateLog.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="DeleteFile.resx">
           <DependentUpon>DeleteFile.cs</DependentUpon>

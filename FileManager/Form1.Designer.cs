@@ -62,10 +62,13 @@ namespace FileManager
             this.Functionality = new System.Windows.Forms.ToolStripDropDownButton();
             this.Functionality_openpipeline = new System.Windows.Forms.ToolStripMenuItem();
             this.Functionality_closepipeline = new System.Windows.Forms.ToolStripMenuItem();
+            this.Functionality_log = new System.Windows.Forms.ToolStripMenuItem();
             this.Functionality_openlogfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.Functionality_savelog = new System.Windows.Forms.ToolStripMenuItem();
             this.Terminals = new System.Windows.Forms.ToolStripMenuItem();
             this.Terminals_linux = new System.Windows.Forms.ToolStripMenuItem();
             this.Terminals_windows = new System.Windows.Forms.ToolStripMenuItem();
+            this.Functionality_openlogchanal = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenu1.SuspendLayout();
             this.ContextMenu2.SuspendLayout();
             this.toolstrip.SuspendLayout();
@@ -194,12 +197,12 @@ namespace FileManager
             // 
             this.ContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ContextMenu2_createbutton, this.ContextMenu2_pastebutton, this.ContextMenu2_clear});
             this.ContextMenu2.Name = "ContextMenu1";
-            this.ContextMenu2.Size = new System.Drawing.Size(153, 92);
+            this.ContextMenu2.Size = new System.Drawing.Size(144, 70);
             // 
             // ContextMenu2_createbutton
             // 
             this.ContextMenu2_createbutton.Name = "ContextMenu2_createbutton";
-            this.ContextMenu2_createbutton.Size = new System.Drawing.Size(152, 22);
+            this.ContextMenu2_createbutton.Size = new System.Drawing.Size(143, 22);
             this.ContextMenu2_createbutton.Text = "Create";
             this.ContextMenu2_createbutton.Click += new System.EventHandler(this.ContextMenu2_CreateButton);
             // 
@@ -207,14 +210,14 @@ namespace FileManager
             // 
             this.ContextMenu2_pastebutton.Name = "ContextMenu2_pastebutton";
             this.ContextMenu2_pastebutton.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.ContextMenu2_pastebutton.Size = new System.Drawing.Size(152, 22);
+            this.ContextMenu2_pastebutton.Size = new System.Drawing.Size(143, 22);
             this.ContextMenu2_pastebutton.Text = "Paste";
             this.ContextMenu2_pastebutton.Click += new System.EventHandler(this.ContextMenu2_PasteButton);
             // 
             // ContextMenu2_clear
             // 
             this.ContextMenu2_clear.Name = "ContextMenu2_clear";
-            this.ContextMenu2_clear.Size = new System.Drawing.Size(152, 22);
+            this.ContextMenu2_clear.Size = new System.Drawing.Size(143, 22);
             this.ContextMenu2_clear.Text = "Clear";
             this.ContextMenu2_clear.Click += new System.EventHandler(this.ContextMenu2_clear_Click);
             // 
@@ -284,7 +287,7 @@ namespace FileManager
             // Functionality
             // 
             this.Functionality.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Functionality.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Functionality_openpipeline, this.Functionality_closepipeline, this.Functionality_openlogfile, this.Terminals});
+            this.Functionality.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Functionality_openpipeline, this.Functionality_closepipeline, this.Functionality_log, this.Terminals});
             this.Functionality.Image = ((System.Drawing.Image) (resources.GetObject("Functionality.Image")));
             this.Functionality.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Functionality.Name = "Functionality";
@@ -294,44 +297,65 @@ namespace FileManager
             // Functionality_openpipeline
             // 
             this.Functionality_openpipeline.Name = "Functionality_openpipeline";
-            this.Functionality_openpipeline.Size = new System.Drawing.Size(179, 22);
+            this.Functionality_openpipeline.Size = new System.Drawing.Size(156, 22);
             this.Functionality_openpipeline.Text = "Открыть канал";
             this.Functionality_openpipeline.Click += new System.EventHandler(this.Functionality_OpenPipeLine);
             // 
             // Functionality_closepipeline
             // 
             this.Functionality_closepipeline.Name = "Functionality_closepipeline";
-            this.Functionality_closepipeline.Size = new System.Drawing.Size(179, 22);
+            this.Functionality_closepipeline.Size = new System.Drawing.Size(156, 22);
             this.Functionality_closepipeline.Text = "Закрыть канал";
             this.Functionality_closepipeline.Click += new System.EventHandler(this.Functionality_ClosePipeLine);
+            // 
+            // Functionality_log
+            // 
+            this.Functionality_log.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Functionality_openlogfile, this.Functionality_savelog, this.Functionality_openlogchanal});
+            this.Functionality_log.Name = "Functionality_log";
+            this.Functionality_log.Size = new System.Drawing.Size(156, 22);
+            this.Functionality_log.Text = "Логирование";
             // 
             // Functionality_openlogfile
             // 
             this.Functionality_openlogfile.Name = "Functionality_openlogfile";
-            this.Functionality_openlogfile.Size = new System.Drawing.Size(179, 22);
-            this.Functionality_openlogfile.Text = "Открыть процессы";
+            this.Functionality_openlogfile.Size = new System.Drawing.Size(175, 22);
+            this.Functionality_openlogfile.Text = "Открыть логфайл";
             this.Functionality_openlogfile.Click += new System.EventHandler(this.Functionality_OpenLogFile);
+            // 
+            // Functionality_savelog
+            // 
+            this.Functionality_savelog.Name = "Functionality_savelog";
+            this.Functionality_savelog.Size = new System.Drawing.Size(175, 22);
+            this.Functionality_savelog.Text = "Сохранить лог";
+            this.Functionality_savelog.Click += new System.EventHandler(this.Functionality_savelog_Click);
             // 
             // Terminals
             // 
             this.Terminals.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.Terminals_linux, this.Terminals_windows});
             this.Terminals.Name = "Terminals";
-            this.Terminals.Size = new System.Drawing.Size(179, 22);
+            this.Terminals.Size = new System.Drawing.Size(156, 22);
             this.Terminals.Text = "Терминалы";
             // 
             // Terminals_linux
             // 
             this.Terminals_linux.Name = "Terminals_linux";
-            this.Terminals_linux.Size = new System.Drawing.Size(123, 22);
+            this.Terminals_linux.Size = new System.Drawing.Size(152, 22);
             this.Terminals_linux.Text = "Linux";
             this.Terminals_linux.Click += new System.EventHandler(this.Terminals_linux_Click);
             // 
             // Terminals_windows
             // 
             this.Terminals_windows.Name = "Terminals_windows";
-            this.Terminals_windows.Size = new System.Drawing.Size(123, 22);
+            this.Terminals_windows.Size = new System.Drawing.Size(152, 22);
             this.Terminals_windows.Text = "Windows";
             this.Terminals_windows.Click += new System.EventHandler(this.Terminals_windows_Click);
+            // 
+            // Functionality_openlogchanal
+            // 
+            this.Functionality_openlogchanal.Name = "Functionality_openlogchanal";
+            this.Functionality_openlogchanal.Size = new System.Drawing.Size(175, 22);
+            this.Functionality_openlogchanal.Text = "Открыть логканал";
+            this.Functionality_openlogchanal.Click += new System.EventHandler(this.Functionality_openlogchanal_Click);
             // 
             // Form1
             // 
@@ -360,6 +384,11 @@ namespace FileManager
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.ToolStripMenuItem Functionality_openlogchanal;
+
+        private System.Windows.Forms.ToolStripMenuItem Functionality_openlogfile;
+        private System.Windows.Forms.ToolStripMenuItem Functionality_savelog;
+
         private System.Windows.Forms.ToolStripMenuItem ContextMenu1_clear;
         private System.Windows.Forms.ToolStripMenuItem ContextMenu2_clear;
 
@@ -370,7 +399,7 @@ namespace FileManager
         private System.Windows.Forms.ToolStripDropDownButton Functionality;
         private System.Windows.Forms.ToolStripMenuItem Functionality_openpipeline;
         private System.Windows.Forms.ToolStripMenuItem Functionality_closepipeline;
-        private System.Windows.Forms.ToolStripMenuItem Functionality_openlogfile;
+        private System.Windows.Forms.ToolStripMenuItem Functionality_log;
 
         private System.Windows.Forms.ToolStripMenuItem Main_helpbutton;
 

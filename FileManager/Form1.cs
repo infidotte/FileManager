@@ -65,7 +65,8 @@ namespace FileManager
                     foreach (var dirs in new DirectoryInfo(Path.Combine(disc.Name, manag)).GetDirectories(name,
                                  SearchOption.AllDirectories))
                     {
-                        return dirs.FullName;
+                        if(!dirs.FullName.Contains(".git"))
+                            return dirs.FullName;
                     }
                 }
             }
@@ -408,8 +409,13 @@ namespace FileManager
             getFilesAndDirs(info1);
             if (singleton.locker)
             {
-                PipeLineWriter(info.Name + " переименован в -> " + singleton.rename + " в: " + DateTime.Now +
-                               " по местному времени");
+                string message = info.Name + " переименован в -> " + singleton.rename + " в: " + DateTime.Now +
+                                 " по местному времени";
+                PipeLineWriter(message);
+                using (StreamWriter streamWriter = new StreamWriter("chanals.txt", true))
+                {
+                    streamWriter.Write(message);
+                }
             }
         }
 
@@ -817,7 +823,7 @@ namespace FileManager
             PipeLineWriter("Close");
             singleton.locker = false;
         }
-
+        
         private void Functionality_OpenLogFile(object sender, EventArgs e)
         {
             Process.Start("logfile.txt");
@@ -834,5 +840,17 @@ namespace FileManager
         }
 
         #endregion
+
+
+        private void Functionality_savelog_Click(object sender, EventArgs e)
+        {
+            CreateLog cl = new CreateLog(FindPath("logs"));
+            cl.ShowDialog();
+        }
+
+        private void Functionality_openlogchanal_Click(object sender, EventArgs e)
+        {
+            Process.Start("chanals.txt");
+        }
     }
 }

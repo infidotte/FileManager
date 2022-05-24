@@ -28,3 +28,4 @@ C:\FileManager\System\FileManager\FileManager\obj\Debug\FileManager.exe
 C:\FileManager\System\FileManager\FileManager\obj\Debug\FileManager.pdb
 C:\FileManager\System\FileManager\FileManager\obj\Debug\FileManager.DeleteFile.resources
 C:\FileManager\System\FileManager\FileManager\obj\Debug\FileManager.Rename.resources
+C:\FileManager\System\FileManager\FileManager\obj\Debug\FileManager.CreateLog.resources

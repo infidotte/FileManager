@@ -1,0 +1,6 @@
+DESKTOP-76744F9\pflat | Loging.exe открыт в 24.05.2022 22:17:09
+chek.txt переименован в -> test.txt в: 24.05.2022 22:17:27 по местному времениDESKTOP-76744F9\pflat | smartscreen.exe открыт в 24.05.2022 22:17:38
+DESKTOP-76744F9\pflat | notepad.exe открыт в 24.05.2022 22:17:38
+unknown | notepad.exe закрыт в 24.05.2022 22:17:42
+DESKTOP-76744F9\pflat | notepad.exe открыт в 24.05.2022 22:17:43
+unknown | notepad.exe закрыт в 24.05.2022 22:17:45

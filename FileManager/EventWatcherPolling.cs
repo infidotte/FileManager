@@ -37,6 +37,10 @@ namespace FileManager
                         if (Program.singleton.locker)
                         {
                             pipeLineWriter(message);
+                            using (StreamWriter streamWriter = new StreamWriter("chanals.txt", true))
+                            {
+                                streamWriter.Write(message);
+                            }
                         }
                     }
                 }
@@ -62,6 +66,10 @@ namespace FileManager
                         if (Program.singleton.locker)
                         {
                             pipeLineWriter(message);
+                            using (StreamWriter streamWriter = new StreamWriter("chanals.txt", true))
+                            {
+                                streamWriter.Write(message);
+                            }
                         }
                     }
                 }
